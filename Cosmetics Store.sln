@@ -5,6 +5,8 @@ VisualStudioVersion = 17.11.35222.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cosmetics Store", "Cosmetics Store.csproj", "{5108AB32-AC51-4CFA-8DC9-3B7245150670}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pharmacy", "..\final\pharmacy\pharmacy.csproj", "{89520E2B-B177-4B3A-96D0-9A74572F3B4E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{5108AB32-AC51-4CFA-8DC9-3B7245150670}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5108AB32-AC51-4CFA-8DC9-3B7245150670}.Release|x64.ActiveCfg = Release|Any CPU
 		{5108AB32-AC51-4CFA-8DC9-3B7245150670}.Release|x64.Build.0 = Release|Any CPU
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Debug|x64.ActiveCfg = Debug|x64
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Debug|x64.Build.0 = Debug|x64
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Release|x64.ActiveCfg = Release|x64
+		{89520E2B-B177-4B3A-96D0-9A74572F3B4E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

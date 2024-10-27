@@ -29,10 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainpanel = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
@@ -41,6 +46,7 @@
             this.receivedbox = new System.Windows.Forms.TextBox();
             this.panel22 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.medicinebox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.quantitybox = new System.Windows.Forms.TextBox();
@@ -60,28 +66,44 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.button39 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button26 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
+            this.button39 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.addProductspanel = new System.Windows.Forms.Panel();
+            this.panel17 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.r_pricebox = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.namebox = new System.Windows.Forms.TextBox();
+            this.unitbox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.discount_box = new System.Windows.Forms.TextBox();
+            this.unitequalsbox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.pricebox = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.updateproductspanel = new System.Windows.Forms.Panel();
+            this.button11 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.viewallpanel = new System.Windows.Forms.Panel();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.returnpanel = new System.Windows.Forms.Panel();
+            this.button15 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.recordpanel = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.billcheckpanel = new System.Windows.Forms.Panel();
+            this.button12 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainpanel.SuspendLayout();
             this.panel23.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
@@ -93,6 +115,7 @@
             this.panel10.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.addProductspanel.SuspendLayout();
+            this.panel17.SuspendLayout();
             this.updateproductspanel.SuspendLayout();
             this.viewallpanel.SuspendLayout();
             this.returnpanel.SuspendLayout();
@@ -109,7 +132,7 @@
             this.mainpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainpanel.Location = new System.Drawing.Point(0, 0);
             this.mainpanel.Name = "mainpanel";
-            this.mainpanel.Size = new System.Drawing.Size(1920, 1046);
+            this.mainpanel.Size = new System.Drawing.Size(1924, 1046);
             this.mainpanel.TabIndex = 0;
             // 
             // panel23
@@ -150,6 +173,46 @@
             this.dataGridView4.Size = new System.Drawing.Size(1028, 550);
             this.dataGridView4.TabIndex = 39;
             this.dataGridView4.TabStop = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Sr.";
+            this.Column1.MinimumWidth = 8;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 80;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Product Name";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 230;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Price";
+            this.Column3.MinimumWidth = 8;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 140;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Qty";
+            this.Column4.MinimumWidth = 8;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 140;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Total";
+            this.Column5.MinimumWidth = 8;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Width = 140;
             // 
             // button1
             // 
@@ -195,6 +258,7 @@
             this.discountbox.Size = new System.Drawing.Size(318, 49);
             this.discountbox.TabIndex = 42;
             this.discountbox.TabStop = false;
+            this.discountbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.discountbox_KeyPress);
             // 
             // label26
             // 
@@ -214,6 +278,7 @@
             this.receivedbox.Size = new System.Drawing.Size(318, 49);
             this.receivedbox.TabIndex = 44;
             this.receivedbox.TabStop = false;
+            this.receivedbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.receivedbox_KeyPress);
             // 
             // panel22
             // 
@@ -235,14 +300,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
@@ -257,6 +322,14 @@
             this.dataGridView1.Size = new System.Drawing.Size(689, 477);
             this.dataGridView1.TabIndex = 70;
             this.dataGridView1.TabStop = false;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name Match";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 460;
             // 
             // medicinebox
             // 
@@ -285,6 +358,7 @@
             this.quantitybox.Size = new System.Drawing.Size(493, 49);
             this.quantitybox.TabIndex = 24;
             this.quantitybox.TabStop = false;
+            this.quantitybox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.quantitybox_KeyPress);
             // 
             // label11
             // 
@@ -439,7 +513,7 @@
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1920, 140);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1924, 140);
             this.flowLayoutPanel2.TabIndex = 0;
             // 
             // button9
@@ -479,6 +553,24 @@
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.White;
+            this.button10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button10.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button10.Location = new System.Drawing.Point(639, 3);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(312, 133);
+            this.button10.TabIndex = 37;
+            this.button10.TabStop = false;
+            this.button10.Text = "Update Products";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // button39
             // 
             this.button39.BackColor = System.Drawing.Color.White;
@@ -496,24 +588,6 @@
             this.button39.Text = "View Products";
             this.button39.UseVisualStyleBackColor = false;
             this.button39.Click += new System.EventHandler(this.button39_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.White;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button7.Location = new System.Drawing.Point(1593, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(312, 133);
-            this.button7.TabIndex = 63;
-            this.button7.TabStop = false;
-            this.button7.Text = "Bill check";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button26
             // 
@@ -533,50 +607,256 @@
             this.button26.UseVisualStyleBackColor = false;
             this.button26.Click += new System.EventHandler(this.button26_Click);
             // 
-            // button10
+            // button7
             // 
-            this.button10.BackColor = System.Drawing.Color.White;
-            this.button10.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.button10.Location = new System.Drawing.Point(639, 3);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(312, 133);
-            this.button10.TabIndex = 37;
-            this.button10.TabStop = false;
-            this.button10.Text = "Update Products";
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button7.BackColor = System.Drawing.Color.White;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.LightGray;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.button7.Location = new System.Drawing.Point(1593, 3);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(312, 133);
+            this.button7.TabIndex = 63;
+            this.button7.TabStop = false;
+            this.button7.Text = "Bill check";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // addProductspanel
             // 
-            this.addProductspanel.Controls.Add(this.label3);
+            this.addProductspanel.Controls.Add(this.panel17);
+            this.addProductspanel.Controls.Add(this.label21);
+            this.addProductspanel.Controls.Add(this.button3);
             this.addProductspanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.addProductspanel.Location = new System.Drawing.Point(0, 0);
             this.addProductspanel.Name = "addProductspanel";
-            this.addProductspanel.Size = new System.Drawing.Size(1920, 1046);
+            this.addProductspanel.Size = new System.Drawing.Size(1924, 1046);
             this.addProductspanel.TabIndex = 1;
+            // 
+            // panel17
+            // 
+            this.panel17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel17.Controls.Add(this.label3);
+            this.panel17.Controls.Add(this.r_pricebox);
+            this.panel17.Controls.Add(this.label30);
+            this.panel17.Controls.Add(this.button6);
+            this.panel17.Controls.Add(this.button16);
+            this.panel17.Controls.Add(this.label12);
+            this.panel17.Controls.Add(this.namebox);
+            this.panel17.Controls.Add(this.unitbox);
+            this.panel17.Controls.Add(this.label10);
+            this.panel17.Controls.Add(this.discount_box);
+            this.panel17.Controls.Add(this.unitequalsbox);
+            this.panel17.Controls.Add(this.label7);
+            this.panel17.Controls.Add(this.label14);
+            this.panel17.Controls.Add(this.pricebox);
+            this.panel17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel17.Location = new System.Drawing.Point(68, 267);
+            this.panel17.Name = "panel17";
+            this.panel17.Size = new System.Drawing.Size(1788, 674);
+            this.panel17.TabIndex = 52;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(477, 70);
+            this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(33, 294);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(97, 20);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Add Product";
+            this.label3.Size = new System.Drawing.Size(220, 42);
+            this.label3.TabIndex = 44;
+            this.label3.Text = "Retail Price";
+            // 
+            // r_pricebox
+            // 
+            this.r_pricebox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.r_pricebox.Location = new System.Drawing.Point(374, 291);
+            this.r_pricebox.Name = "r_pricebox";
+            this.r_pricebox.Size = new System.Drawing.Size(523, 49);
+            this.r_pricebox.TabIndex = 45;
+            this.r_pricebox.TabStop = false;
+            this.r_pricebox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.r_pricebox_KeyPress);
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(33, 447);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(208, 42);
+            this.label30.TabIndex = 42;
+            this.label30.Text = "Total Units";
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F);
+            this.button6.Location = new System.Drawing.Point(1438, 563);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(140, 75);
+            this.button6.TabIndex = 34;
+            this.button6.TabStop = false;
+            this.button6.Text = "Clear";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button16
+            // 
+            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.button16.Font = new System.Drawing.Font("Arial Rounded MT Bold", 16F);
+            this.button16.Location = new System.Drawing.Point(1598, 563);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(140, 75);
+            this.button16.TabIndex = 1;
+            this.button16.Text = "Save";
+            this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(33, 141);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(269, 42);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Product Name";
+            // 
+            // namebox
+            // 
+            this.namebox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.namebox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.namebox.Location = new System.Drawing.Point(374, 138);
+            this.namebox.Name = "namebox";
+            this.namebox.Size = new System.Drawing.Size(523, 49);
+            this.namebox.TabIndex = 21;
+            this.namebox.TabStop = false;
+            // 
+            // unitbox
+            // 
+            this.unitbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unitbox.Location = new System.Drawing.Point(374, 444);
+            this.unitbox.Name = "unitbox";
+            this.unitbox.Size = new System.Drawing.Size(523, 49);
+            this.unitbox.TabIndex = 43;
+            this.unitbox.TabStop = false;
+            this.unitbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitbox_KeyPress);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(931, 294);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(175, 42);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Discount";
+            // 
+            // discount_box
+            // 
+            this.discount_box.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.discount_box.Location = new System.Drawing.Point(1234, 291);
+            this.discount_box.Name = "discount_box";
+            this.discount_box.Size = new System.Drawing.Size(523, 49);
+            this.discount_box.TabIndex = 25;
+            this.discount_box.TabStop = false;
+            this.discount_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.discount_box_KeyPress);
+            // 
+            // unitequalsbox
+            // 
+            this.unitequalsbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.unitequalsbox.Location = new System.Drawing.Point(1234, 444);
+            this.unitequalsbox.Name = "unitequalsbox";
+            this.unitequalsbox.Size = new System.Drawing.Size(523, 49);
+            this.unitequalsbox.TabIndex = 41;
+            this.unitequalsbox.TabStop = false;
+            this.unitequalsbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitequalsbox_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(931, 141);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(110, 42);
+            this.label7.TabIndex = 26;
+            this.label7.Text = "Price";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(931, 447);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(269, 42);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "Per Unit Equal";
+            // 
+            // pricebox
+            // 
+            this.pricebox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pricebox.Location = new System.Drawing.Point(1234, 138);
+            this.pricebox.Name = "pricebox";
+            this.pricebox.Size = new System.Drawing.Size(523, 49);
+            this.pricebox.TabIndex = 30;
+            this.pricebox.TabStop = false;
+            this.pricebox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pricebox_KeyPress);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Arial Rounded MT Bold", 28F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(709, 105);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(506, 65);
+            this.label21.TabIndex = 51;
+            this.label21.Text = "Add New Product";
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Location = new System.Drawing.Point(33, 33);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(48, 49);
+            this.button3.TabIndex = 10;
+            this.button3.TabStop = false;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // updateproductspanel
             // 
+            this.updateproductspanel.Controls.Add(this.button11);
             this.updateproductspanel.Controls.Add(this.label4);
             this.updateproductspanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.updateproductspanel.Location = new System.Drawing.Point(0, 0);
             this.updateproductspanel.Name = "updateproductspanel";
-            this.updateproductspanel.Size = new System.Drawing.Size(1920, 1046);
+            this.updateproductspanel.Size = new System.Drawing.Size(1924, 1046);
             this.updateproductspanel.TabIndex = 2;
+            // 
+            // button11
+            // 
+            this.button11.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button11.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button11.FlatAppearance.BorderSize = 0;
+            this.button11.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button11.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button11.Location = new System.Drawing.Point(33, 33);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(48, 49);
+            this.button11.TabIndex = 13;
+            this.button11.TabStop = false;
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // label4
             // 
@@ -589,12 +869,47 @@
             // 
             // viewallpanel
             // 
+            this.viewallpanel.Controls.Add(this.button13);
+            this.viewallpanel.Controls.Add(this.button14);
             this.viewallpanel.Controls.Add(this.label6);
             this.viewallpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewallpanel.Location = new System.Drawing.Point(0, 0);
             this.viewallpanel.Name = "viewallpanel";
-            this.viewallpanel.Size = new System.Drawing.Size(1920, 1046);
+            this.viewallpanel.Size = new System.Drawing.Size(1924, 1046);
             this.viewallpanel.TabIndex = 3;
+            // 
+            // button13
+            // 
+            this.button13.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button13.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button13.FlatAppearance.BorderSize = 0;
+            this.button13.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button13.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button13.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button13.Location = new System.Drawing.Point(33, 33);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(48, 49);
+            this.button13.TabIndex = 14;
+            this.button13.TabStop = false;
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button14
+            // 
+            this.button14.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button14.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button14.FlatAppearance.BorderSize = 0;
+            this.button14.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button14.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button14.Location = new System.Drawing.Point(33, 33);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(48, 49);
+            this.button14.TabIndex = 15;
+            this.button14.TabStop = false;
+            this.button14.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -607,12 +922,30 @@
             // 
             // returnpanel
             // 
+            this.returnpanel.Controls.Add(this.button15);
             this.returnpanel.Controls.Add(this.label1);
             this.returnpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.returnpanel.Location = new System.Drawing.Point(0, 0);
             this.returnpanel.Name = "returnpanel";
-            this.returnpanel.Size = new System.Drawing.Size(1920, 1046);
+            this.returnpanel.Size = new System.Drawing.Size(1924, 1046);
             this.returnpanel.TabIndex = 4;
+            // 
+            // button15
+            // 
+            this.button15.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button15.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button15.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button15.FlatAppearance.BorderSize = 0;
+            this.button15.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button15.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button15.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button15.Location = new System.Drawing.Point(33, 33);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(48, 49);
+            this.button15.TabIndex = 16;
+            this.button15.TabStop = false;
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // label1
             // 
@@ -625,12 +958,30 @@
             // 
             // recordpanel
             // 
+            this.recordpanel.Controls.Add(this.button4);
             this.recordpanel.Controls.Add(this.label2);
             this.recordpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.recordpanel.Location = new System.Drawing.Point(0, 0);
             this.recordpanel.Name = "recordpanel";
-            this.recordpanel.Size = new System.Drawing.Size(1920, 1046);
+            this.recordpanel.Size = new System.Drawing.Size(1924, 1046);
             this.recordpanel.TabIndex = 5;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(33, 33);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(48, 49);
+            this.button4.TabIndex = 11;
+            this.button4.TabStop = false;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label2
             // 
@@ -643,12 +994,30 @@
             // 
             // billcheckpanel
             // 
+            this.billcheckpanel.Controls.Add(this.button12);
             this.billcheckpanel.Controls.Add(this.label5);
             this.billcheckpanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.billcheckpanel.Location = new System.Drawing.Point(0, 0);
             this.billcheckpanel.Name = "billcheckpanel";
-            this.billcheckpanel.Size = new System.Drawing.Size(1920, 1046);
+            this.billcheckpanel.Size = new System.Drawing.Size(1924, 1046);
             this.billcheckpanel.TabIndex = 6;
+            // 
+            // button12
+            // 
+            this.button12.BackgroundImage = global::Cosmetics_Store.Properties.Resources.back_arrow;
+            this.button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button12.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button12.FlatAppearance.BorderSize = 0;
+            this.button12.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button12.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button12.Location = new System.Drawing.Point(33, 33);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(48, 49);
+            this.button12.TabIndex = 9;
+            this.button12.TabStop = false;
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // label5
             // 
@@ -659,66 +1028,18 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "bill check";
             // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Sr.";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Width = 80;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Product Name";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.Width = 230;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Price";
-            this.Column3.MinimumWidth = 8;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            this.Column3.Width = 140;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Qty";
-            this.Column4.MinimumWidth = 8;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 140;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Total";
-            this.Column5.MinimumWidth = 8;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Width = 140;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Name Match";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 460;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1046);
+            this.ClientSize = new System.Drawing.Size(1924, 1046);
             this.Controls.Add(this.mainpanel);
-            this.Controls.Add(this.recordpanel);
-            this.Controls.Add(this.returnpanel);
-            this.Controls.Add(this.viewallpanel);
-            this.Controls.Add(this.updateproductspanel);
             this.Controls.Add(this.addProductspanel);
+            this.Controls.Add(this.recordpanel);
             this.Controls.Add(this.billcheckpanel);
+            this.Controls.Add(this.updateproductspanel);
+            this.Controls.Add(this.viewallpanel);
+            this.Controls.Add(this.returnpanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.HelpButton = true;
             this.MinimumSize = new System.Drawing.Size(1918, 1032);
@@ -744,6 +1065,8 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.addProductspanel.ResumeLayout(false);
             this.addProductspanel.PerformLayout();
+            this.panel17.ResumeLayout(false);
+            this.panel17.PerformLayout();
             this.updateproductspanel.ResumeLayout(false);
             this.updateproductspanel.PerformLayout();
             this.viewallpanel.ResumeLayout(false);
@@ -768,7 +1091,6 @@
         private System.Windows.Forms.Panel recordpanel;
         private System.Windows.Forms.Panel billcheckpanel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
@@ -812,6 +1134,29 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panel17;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox r_pricebox;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox namebox;
+        private System.Windows.Forms.TextBox unitbox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox discount_box;
+        private System.Windows.Forms.TextBox unitequalsbox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox pricebox;
+        private System.Windows.Forms.Label label21;
     }
 }
 
