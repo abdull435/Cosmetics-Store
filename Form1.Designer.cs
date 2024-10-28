@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainpanel = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
@@ -84,31 +84,42 @@
             this.label12 = new System.Windows.Forms.Label();
             this.namebox = new System.Windows.Forms.TextBox();
             this.unitbox = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.discount_box = new System.Windows.Forms.TextBox();
             this.unitequalsbox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.pricebox = new System.Windows.Forms.TextBox();
+            this.p_pricebox = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.updateproductspanel = new System.Windows.Forms.Panel();
+            this.updateid = new System.Windows.Forms.TextBox();
             this.panel20 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.ppbox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.updateunits = new System.Windows.Forms.TextBox();
+            this.update_p_p = new System.Windows.Forms.TextBox();
             this.button19 = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.button20 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
-            this.spbox = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.updateperunit = new System.Windows.Forms.TextBox();
+            this.update_r_price = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.nbox = new System.Windows.Forms.TextBox();
+            this.updatename = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.panel19 = new System.Windows.Forms.Panel();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button17 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
-            this.searchbox2 = new System.Windows.Forms.TextBox();
+            this.updatesearch = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.viewallpanel = new System.Windows.Forms.Panel();
@@ -127,6 +138,9 @@
             this.returnsearch = new System.Windows.Forms.TextBox();
             this.panel25 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button28 = new System.Windows.Forms.Button();
             this.button31 = new System.Windows.Forms.Button();
             this.returnquantity = new System.Windows.Forms.TextBox();
@@ -158,18 +172,6 @@
             this.billcheckpanel = new System.Windows.Forms.Panel();
             this.button12 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qbox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.mainpanel.SuspendLayout();
             this.panel23.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
@@ -186,6 +188,7 @@
             this.panel20.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.viewallpanel.SuspendLayout();
             this.panel31.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -202,7 +205,6 @@
             this.panel11.SuspendLayout();
             this.panel12.SuspendLayout();
             this.billcheckpanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // mainpanel
@@ -382,14 +384,14 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle26.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle26.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1});
@@ -729,18 +731,15 @@
             this.panel17.Controls.Add(this.label12);
             this.panel17.Controls.Add(this.namebox);
             this.panel17.Controls.Add(this.unitbox);
-            this.panel17.Controls.Add(this.label10);
-            this.panel17.Controls.Add(this.discount_box);
             this.panel17.Controls.Add(this.unitequalsbox);
             this.panel17.Controls.Add(this.label7);
             this.panel17.Controls.Add(this.label14);
-            this.panel17.Controls.Add(this.pricebox);
+            this.panel17.Controls.Add(this.p_pricebox);
             this.panel17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel17.Location = new System.Drawing.Point(68, 267);
             this.panel17.Name = "panel17";
             this.panel17.Size = new System.Drawing.Size(1788, 674);
             this.panel17.TabIndex = 52;
-            this.panel17.Paint += new System.Windows.Forms.PaintEventHandler(this.panel17_Paint);
             // 
             // label3
             // 
@@ -771,7 +770,6 @@
             this.label30.Size = new System.Drawing.Size(208, 42);
             this.label30.TabIndex = 42;
             this.label30.Text = "Total Units";
-            this.label30.Click += new System.EventHandler(this.label30_Click);
             // 
             // button6
             // 
@@ -826,38 +824,16 @@
             this.unitbox.Size = new System.Drawing.Size(523, 49);
             this.unitbox.TabIndex = 43;
             this.unitbox.TabStop = false;
-            this.unitbox.TextChanged += new System.EventHandler(this.unitbox_TextChanged);
             this.unitbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitbox_KeyPress);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(931, 294);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(175, 42);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "Discount";
-            // 
-            // discount_box
-            // 
-            this.discount_box.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.discount_box.Location = new System.Drawing.Point(1234, 291);
-            this.discount_box.Name = "discount_box";
-            this.discount_box.Size = new System.Drawing.Size(523, 49);
-            this.discount_box.TabIndex = 25;
-            this.discount_box.TabStop = false;
-            this.discount_box.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.discount_box_KeyPress);
             // 
             // unitequalsbox
             // 
             this.unitequalsbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unitequalsbox.Location = new System.Drawing.Point(1234, 444);
+            this.unitequalsbox.Location = new System.Drawing.Point(1234, 292);
             this.unitequalsbox.Name = "unitequalsbox";
             this.unitequalsbox.Size = new System.Drawing.Size(523, 49);
             this.unitequalsbox.TabIndex = 41;
             this.unitequalsbox.TabStop = false;
-            this.unitequalsbox.TextChanged += new System.EventHandler(this.unitequalsbox_TextChanged);
             this.unitequalsbox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.unitequalsbox_KeyPress);
             // 
             // label7
@@ -866,30 +842,29 @@
             this.label7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(931, 141);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(110, 42);
+            this.label7.Size = new System.Drawing.Size(286, 42);
             this.label7.TabIndex = 26;
-            this.label7.Text = "Price";
+            this.label7.Text = "Purchase Price";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(931, 447);
+            this.label14.Location = new System.Drawing.Point(931, 295);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(269, 42);
             this.label14.TabIndex = 40;
             this.label14.Text = "Per Unit Equal";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
-            // pricebox
+            // p_pricebox
             // 
-            this.pricebox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pricebox.Location = new System.Drawing.Point(1234, 138);
-            this.pricebox.Name = "pricebox";
-            this.pricebox.Size = new System.Drawing.Size(523, 49);
-            this.pricebox.TabIndex = 30;
-            this.pricebox.TabStop = false;
-            this.pricebox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pricebox_KeyPress);
+            this.p_pricebox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.p_pricebox.Location = new System.Drawing.Point(1234, 138);
+            this.p_pricebox.Name = "p_pricebox";
+            this.p_pricebox.Size = new System.Drawing.Size(523, 49);
+            this.p_pricebox.TabIndex = 30;
+            this.p_pricebox.TabStop = false;
+            this.p_pricebox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.pricebox_KeyPress);
             // 
             // label21
             // 
@@ -920,6 +895,7 @@
             // 
             // updateproductspanel
             // 
+            this.updateproductspanel.Controls.Add(this.updateid);
             this.updateproductspanel.Controls.Add(this.panel20);
             this.updateproductspanel.Controls.Add(this.label22);
             this.updateproductspanel.Controls.Add(this.button11);
@@ -928,6 +904,14 @@
             this.updateproductspanel.Name = "updateproductspanel";
             this.updateproductspanel.Size = new System.Drawing.Size(1924, 1046);
             this.updateproductspanel.TabIndex = 2;
+            // 
+            // updateid
+            // 
+            this.updateid.Location = new System.Drawing.Point(305, 77);
+            this.updateid.Name = "updateid";
+            this.updateid.Size = new System.Drawing.Size(100, 26);
+            this.updateid.TabIndex = 75;
+            this.updateid.Visible = false;
             // 
             // panel20
             // 
@@ -942,111 +926,139 @@
             // panel18
             // 
             this.panel18.Controls.Add(this.label1);
-            this.panel18.Controls.Add(this.ppbox);
-            this.panel18.Controls.Add(this.textBox1);
-            this.panel18.Controls.Add(this.textBox2);
+            this.panel18.Controls.Add(this.updateunits);
+            this.panel18.Controls.Add(this.update_p_p);
             this.panel18.Controls.Add(this.button19);
             this.panel18.Controls.Add(this.label2);
             this.panel18.Controls.Add(this.button20);
             this.panel18.Controls.Add(this.label17);
-            this.panel18.Controls.Add(this.spbox);
-            this.panel18.Controls.Add(this.label18);
-            this.panel18.Controls.Add(this.qbox);
+            this.panel18.Controls.Add(this.updateperunit);
+            this.panel18.Controls.Add(this.update_r_price);
             this.panel18.Controls.Add(this.label19);
-            this.panel18.Controls.Add(this.nbox);
+            this.panel18.Controls.Add(this.updatename);
             this.panel18.Controls.Add(this.label20);
             this.panel18.Location = new System.Drawing.Point(17, 33);
             this.panel18.Name = "panel18";
             this.panel18.Size = new System.Drawing.Size(840, 745);
             this.panel18.TabIndex = 70;
             // 
-            // ppbox
+            // label1
             // 
-            this.ppbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ppbox.Location = new System.Drawing.Point(312, 495);
-            this.ppbox.Name = "ppbox";
-            this.ppbox.Size = new System.Drawing.Size(502, 49);
-            this.ppbox.TabIndex = 53;
-            this.ppbox.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(21, 474);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(208, 42);
+            this.label1.TabIndex = 77;
+            this.label1.Text = "Total Units";
+            // 
+            // updateunits
+            // 
+            this.updateunits.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateunits.Location = new System.Drawing.Point(312, 471);
+            this.updateunits.Name = "updateunits";
+            this.updateunits.Size = new System.Drawing.Size(502, 49);
+            this.updateunits.TabIndex = 53;
+            this.updateunits.TabStop = false;
+            // 
+            // update_p_p
+            // 
+            this.update_p_p.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update_p_p.Location = new System.Drawing.Point(312, 247);
+            this.update_p_p.Name = "update_p_p";
+            this.update_p_p.Size = new System.Drawing.Size(502, 49);
+            this.update_p_p.TabIndex = 78;
+            this.update_p_p.TabStop = false;
             // 
             // button19
             // 
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button19.Location = new System.Drawing.Point(522, 655);
+            this.button19.Location = new System.Drawing.Point(513, 656);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(140, 75);
             this.button19.TabIndex = 57;
             this.button19.TabStop = false;
             this.button19.Text = "Clear";
             this.button19.UseVisualStyleBackColor = false;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(21, 586);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(269, 42);
+            this.label2.TabIndex = 75;
+            this.label2.Text = "Per Unit Equal";
             // 
             // button20
             // 
             this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.button20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button20.Location = new System.Drawing.Point(683, 655);
+            this.button20.Location = new System.Drawing.Point(674, 656);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(140, 75);
             this.button20.TabIndex = 1;
             this.button20.TabStop = false;
             this.button20.Text = "Update";
             this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(32, 298);
+            this.label17.Location = new System.Drawing.Point(21, 362);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(220, 42);
             this.label17.TabIndex = 49;
             this.label17.Text = "Retail Price";
             // 
-            // spbox
+            // updateperunit
             // 
-            this.spbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spbox.Location = new System.Drawing.Point(312, 585);
-            this.spbox.Name = "spbox";
-            this.spbox.Size = new System.Drawing.Size(502, 49);
-            this.spbox.TabIndex = 48;
-            this.spbox.TabStop = false;
+            this.updateperunit.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateperunit.Location = new System.Drawing.Point(312, 583);
+            this.updateperunit.Name = "updateperunit";
+            this.updateperunit.Size = new System.Drawing.Size(502, 49);
+            this.updateperunit.TabIndex = 48;
+            this.updateperunit.TabStop = false;
             // 
-            // label18
+            // update_r_price
             // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(32, 394);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(175, 42);
-            this.label18.TabIndex = 47;
-            this.label18.Text = "Discount";
+            this.update_r_price.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.update_r_price.Location = new System.Drawing.Point(312, 359);
+            this.update_r_price.Name = "update_r_price";
+            this.update_r_price.Size = new System.Drawing.Size(502, 49);
+            this.update_r_price.TabIndex = 46;
+            this.update_r_price.TabStop = false;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(32, 240);
+            this.label19.Location = new System.Drawing.Point(21, 250);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(110, 42);
+            this.label19.Size = new System.Drawing.Size(286, 42);
             this.label19.TabIndex = 45;
-            this.label19.Text = "Price";
+            this.label19.Text = "Purchase Price";
             // 
-            // nbox
+            // updatename
             // 
-            this.nbox.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.nbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nbox.Location = new System.Drawing.Point(312, 135);
-            this.nbox.Name = "nbox";
-            this.nbox.Size = new System.Drawing.Size(502, 49);
-            this.nbox.TabIndex = 44;
-            this.nbox.TabStop = false;
+            this.updatename.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.updatename.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updatename.Location = new System.Drawing.Point(312, 135);
+            this.updatename.Name = "updatename";
+            this.updatename.Size = new System.Drawing.Size(502, 49);
+            this.updatename.TabIndex = 44;
+            this.updatename.TabStop = false;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(32, 137);
+            this.label20.Location = new System.Drawing.Point(21, 138);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(119, 42);
             this.label20.TabIndex = 43;
@@ -1058,11 +1070,109 @@
             this.panel19.Controls.Add(this.button17);
             this.panel19.Controls.Add(this.button18);
             this.panel19.Controls.Add(this.button21);
-            this.panel19.Controls.Add(this.searchbox2);
+            this.panel19.Controls.Add(this.updatesearch);
             this.panel19.Location = new System.Drawing.Point(869, 33);
             this.panel19.Name = "panel19";
             this.panel19.Size = new System.Drawing.Size(990, 744);
             this.panel19.TabIndex = 71;
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.Column7,
+            this.Column8,
+            this.Column9,
+            this.Column10,
+            this.Column11});
+            this.dataGridView3.Location = new System.Drawing.Point(26, 135);
+            this.dataGridView3.MultiSelect = false;
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.ReadOnly = true;
+            this.dataGridView3.RowHeadersVisible = false;
+            this.dataGridView3.RowHeadersWidth = 62;
+            this.dataGridView3.RowTemplate.Height = 28;
+            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView3.Size = new System.Drawing.Size(951, 594);
+            this.dataGridView3.TabIndex = 100;
+            this.dataGridView3.TabStop = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 250;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Quantity";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 150;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Purchase Price";
+            this.Column7.MinimumWidth = 8;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Width = 150;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Retail Price";
+            this.Column8.MinimumWidth = 8;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Width = 150;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Total Unit";
+            this.Column9.MinimumWidth = 8;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Width = 150;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Per Unit Equals";
+            this.Column10.MinimumWidth = 8;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Width = 150;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Total Price";
+            this.Column11.MinimumWidth = 8;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Width = 150;
             // 
             // button17
             // 
@@ -1075,6 +1185,7 @@
             this.button17.TabStop = false;
             this.button17.Text = "Delete";
             this.button17.UseVisualStyleBackColor = false;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button18
             // 
@@ -1087,6 +1198,7 @@
             this.button18.TabStop = false;
             this.button18.Text = "Edit";
             this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // button21
             // 
@@ -1099,15 +1211,16 @@
             this.button21.TabStop = false;
             this.button21.Text = "Search";
             this.button21.UseVisualStyleBackColor = false;
+            this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
-            // searchbox2
+            // updatesearch
             // 
-            this.searchbox2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchbox2.Location = new System.Drawing.Point(26, 27);
-            this.searchbox2.Name = "searchbox2";
-            this.searchbox2.Size = new System.Drawing.Size(496, 49);
-            this.searchbox2.TabIndex = 60;
-            this.searchbox2.TabStop = false;
+            this.updatesearch.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updatesearch.Location = new System.Drawing.Point(26, 27);
+            this.updatesearch.Name = "updatesearch";
+            this.updatesearch.Size = new System.Drawing.Size(496, 49);
+            this.updatesearch.TabIndex = 60;
+            this.updatesearch.TabStop = false;
             // 
             // label22
             // 
@@ -1203,23 +1316,23 @@
             // 
             this.dataGridView7.AllowUserToAddRows = false;
             this.dataGridView7.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle27.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle27.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle27.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView7.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView7.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle28.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridView7.Location = new System.Drawing.Point(0, 252);
             this.dataGridView7.MultiSelect = false;
@@ -1336,14 +1449,14 @@
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle29.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle29.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id,
@@ -1360,6 +1473,31 @@
             this.dataGridView2.Size = new System.Drawing.Size(659, 463);
             this.dataGridView2.TabIndex = 99;
             this.dataGridView2.TabStop = false;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.MinimumWidth = 8;
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
+            this.id.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 460;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Quantity";
+            this.Column6.MinimumWidth = 8;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Width = 150;
             // 
             // button28
             // 
@@ -1708,132 +1846,6 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "bill check";
             // 
-            // id
-            // 
-            this.id.HeaderText = "id";
-            this.id.MinimumWidth = 8;
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            this.id.Visible = false;
-            this.id.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name Match";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 460;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Quantity";
-            this.Column6.MinimumWidth = 8;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Width = 150;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle30.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle30.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle30.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle30.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle30.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle30;
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dataGridView3.Location = new System.Drawing.Point(26, 141);
-            this.dataGridView3.MultiSelect = false;
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.ReadOnly = true;
-            this.dataGridView3.RowHeadersVisible = false;
-            this.dataGridView3.RowHeadersWidth = 62;
-            this.dataGridView3.RowTemplate.Height = 28;
-            this.dataGridView3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView3.Size = new System.Drawing.Size(951, 463);
-            this.dataGridView3.TabIndex = 100;
-            this.dataGridView3.TabStop = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "id";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            this.dataGridViewTextBoxColumn3.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Name Match";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 460;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Quantity";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 150;
-            // 
-            // qbox
-            // 
-            this.qbox.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qbox.Location = new System.Drawing.Point(312, 315);
-            this.qbox.Name = "qbox";
-            this.qbox.Size = new System.Drawing.Size(502, 49);
-            this.qbox.TabIndex = 46;
-            this.qbox.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(32, 515);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(208, 42);
-            this.label1.TabIndex = 77;
-            this.label1.Text = "Total Units";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(312, 225);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(502, 49);
-            this.textBox1.TabIndex = 78;
-            this.textBox1.TabStop = false;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(312, 405);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(502, 49);
-            this.textBox2.TabIndex = 76;
-            this.textBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(32, 592);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(269, 42);
-            this.label2.TabIndex = 75;
-            this.label2.Text = "Per Unit Equal";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1880,6 +1892,7 @@
             this.panel18.PerformLayout();
             this.panel19.ResumeLayout(false);
             this.panel19.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.viewallpanel.ResumeLayout(false);
             this.panel31.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
@@ -1907,7 +1920,6 @@
             this.panel12.PerformLayout();
             this.billcheckpanel.ResumeLayout(false);
             this.billcheckpanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1977,29 +1989,26 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox namebox;
         private System.Windows.Forms.TextBox unitbox;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox discount_box;
         private System.Windows.Forms.TextBox unitequalsbox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox pricebox;
+        private System.Windows.Forms.TextBox p_pricebox;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Panel panel20;
         private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.TextBox ppbox;
+        private System.Windows.Forms.TextBox updateunits;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox spbox;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox updateperunit;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox nbox;
+        private System.Windows.Forms.TextBox updatename;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel panel19;
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.Button button21;
-        private System.Windows.Forms.TextBox searchbox2;
+        private System.Windows.Forms.TextBox updatesearch;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Panel panel29;
@@ -2038,18 +2047,23 @@
         private System.Windows.Forms.DataGridView dataGridView7;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.TextBox rid;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.TextBox update_r_price;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox update_p_p;
+        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.TextBox qbox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.TextBox updateid;
     }
 }
 

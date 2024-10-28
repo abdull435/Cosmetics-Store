@@ -37,13 +37,13 @@ namespace Cosmetics_Store
 
         private void button9_Click(object sender, EventArgs e)
         {
-            mainpanel.Visible=false;
-            recordpanel.Visible=false;
+            mainpanel.Visible = false;
+            recordpanel.Visible = false;
             returnpanel.Visible = false;
-            viewallpanel.Visible=false;
-            updateproductspanel.Visible=false;
-            billcheckpanel.Visible=false;
-            addProductspanel.Visible=true;
+            viewallpanel.Visible = false;
+            updateproductspanel.Visible = false;
+            billcheckpanel.Visible = false;
+            addProductspanel.Visible = true;
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -54,7 +54,7 @@ namespace Cosmetics_Store
             viewallpanel.Visible = false;
             addProductspanel.Visible = false;
             billcheckpanel.Visible = false;
-            updateproductspanel.Visible=true;
+            updateproductspanel.Visible = true;
         }
 
         private void button39_Click(object sender, EventArgs e)
@@ -76,7 +76,7 @@ namespace Cosmetics_Store
             updateproductspanel.Visible = false;
             addProductspanel.Visible = false;
             billcheckpanel.Visible = false;
-            recordpanel.Visible=true;
+            recordpanel.Visible = true;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -99,31 +99,31 @@ namespace Cosmetics_Store
         private void button15_Click(object sender, EventArgs e)
         {
             returnpanel.Visible = false;
-            mainpanel.Visible=true;
+            mainpanel.Visible = true;
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            viewallpanel.Visible=false;
+            viewallpanel.Visible = false;
             mainpanel.Visible = true;
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            updateproductspanel.Visible=false;
+            updateproductspanel.Visible = false;
             mainpanel.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            addProductspanel.Visible=false;
-            mainpanel.Visible=true;
+            addProductspanel.Visible = false;
+            mainpanel.Visible = true;
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-            billcheckpanel.Visible=false;
-            mainpanel.Visible=true;
+            billcheckpanel.Visible = false;
+            mainpanel.Visible = true;
         }
 
         private void pricebox_KeyPress(object sender, KeyPressEventArgs e)
@@ -190,13 +190,12 @@ namespace Cosmetics_Store
         {
             clearaddproducts();
         }
-        
+
         public void clearaddproducts()
         {
             namebox.Text = "";
-            pricebox.Text = "";
+            p_pricebox.Text = "";
             r_pricebox.Text = "";
-            discount_box.Text = "";
             unitbox.Text = "";
             unitequalsbox.Text = "";
         }
@@ -205,28 +204,26 @@ namespace Cosmetics_Store
         {
             try
             {
-                int quantity = int.Parse(unitbox.Text) * int.Parse(unitequalsbox.Text);
-                decimal totalPrice = decimal.Parse(pricebox.Text) * quantity;
                 string name = namebox.Text;
+                int quantity = int.Parse(unitbox.Text) * int.Parse(unitequalsbox.Text);
+                decimal purchasePrice = decimal.Parse(p_pricebox.Text);
                 decimal retailPrice = decimal.Parse(r_pricebox.Text);
-                decimal discount = decimal.Parse(discount_box.Text);
-                decimal salePrice =retailPrice*discount/100; 
+                decimal totalPrice = decimal.Parse(p_pricebox.Text) * quantity;
 
                 if (conn.State != ConnectionState.Open) { conn.Open(); };
-                string insertQuery = "INSERT INTO COSMETICS_STORE (NAME, QUANTITY, TOTALPRICE, RETAILPRICE, SALEPRICE, DISCOUNT, TOTALUNIT, PERUNITEQUALS) " +
-                                "VALUES (:name, :quantity, :totalPrice, :retailPrice, :salePrice, :discount, :totalUnit, :perUnitEquals)";
+                string insertQuery = "INSERT INTO COSMETICS_STORE (NAME, QUANTITY, PURCHASEPRICE, RETAILPRICE, TOTALUNIT, PERUNITEQUALS, TOTALPRICE) " +
+                                "VALUES (:name, :quantity, :purchasePrice, :retailPrice, :totalUnit, :perUnitEquals, :totalPrice)";
 
                 using (OracleCommand command = new OracleCommand(insertQuery, conn))
                 {
                     // Add parameters to prevent SQL Injection
                     command.Parameters.Add(new OracleParameter("name", name));
                     command.Parameters.Add(new OracleParameter("quantity", quantity));
-                    command.Parameters.Add(new OracleParameter("totalPrice", totalPrice));
+                    command.Parameters.Add(new OracleParameter("purchasePrice", purchasePrice));
                     command.Parameters.Add(new OracleParameter("retailPrice", retailPrice));
-                    command.Parameters.Add(new OracleParameter("salePrice", salePrice)); // Set as needed
-                    command.Parameters.Add(new OracleParameter("discount", discount));
                     command.Parameters.Add(new OracleParameter("totalUnit", int.Parse(unitbox.Text))); // Adjust as needed
                     command.Parameters.Add(new OracleParameter("perUnitEquals", int.Parse(unitequalsbox.Text)));
+                    command.Parameters.Add(new OracleParameter("totalPrice", totalPrice));
 
                     // Execute the query
                     command.ExecuteNonQuery();
@@ -334,7 +331,7 @@ namespace Cosmetics_Store
 
         private void button28_Click(object sender, EventArgs e)
         {
-            
+
             if (button28.Text.Equals("Edit"))
             {
                 if (dataGridView2.SelectedRows.Count > 0)
@@ -382,7 +379,6 @@ namespace Cosmetics_Store
                         conn.Open();
                     }
 
-                    // Oracle query to update quantity by adding the input value to the existing quantity
                     string query = "UPDATE cosmetics_store SET quantity = quantity + :additionalQuantity WHERE id = :id";
 
                     using (OracleCommand cmd = new OracleCommand(query, conn))
@@ -390,7 +386,7 @@ namespace Cosmetics_Store
                         cmd.Parameters.Add(":additionalQuantity", addQty);
                         cmd.Parameters.Add(":id", ids);
 
-                        int rowsAffected = cmd.ExecuteNonQuery(); // Execute the query
+                        int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)
                         {
@@ -432,29 +428,275 @@ namespace Cosmetics_Store
             dataGridView2.Rows.Clear();
         }
 
-        private void label30_Click(object sender, EventArgs e)
+        private void button21_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(updatesearch.Text))
+            {
+                MessageBox.Show("Search box is empty");
+                return;
+            }
+            updateSearch();
         }
 
-        private void unitbox_TextChanged(object sender, EventArgs e)
+        private void updateSearch()
         {
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
 
+                // Get the search term from the updatesearch TextBox
+                string searchTerm = updatesearch.Text;
+
+                // SQL query to fetch records where the name partially matches the search term
+                string query = "SELECT ID, NAME, QUANTITY, PURCHASEPRICE, RETAILPRICE, TOTALUNIT, PERUNITEQUALS, TOTALPRICE " +
+                               "FROM COSMETICS_STORE WHERE LOWER(NAME) LIKE :searchTerm";
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    // Use wildcard search with LIKE operator
+                    cmd.Parameters.Add(":searchTerm", OracleDbType.Varchar2).Value = "%" + searchTerm + "%";
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear existing rows in dataGridView3
+                        dataGridView3.Rows.Clear();
+
+                        // Loop through the results and add each row to dataGridView3
+                        while (reader.Read())
+                        {
+                            int rowIndex = dataGridView3.Rows.Add(); // Add a new row and get its index
+                            dataGridView3.Rows[rowIndex].Cells[0].Value = reader["ID"];
+                            dataGridView3.Rows[rowIndex].Cells[1].Value = reader["NAME"];
+                            dataGridView3.Rows[rowIndex].Cells[2].Value = reader["QUANTITY"];
+                            dataGridView3.Rows[rowIndex].Cells[3].Value = reader["PURCHASEPRICE"];
+                            dataGridView3.Rows[rowIndex].Cells[4].Value = reader["RETAILPRICE"];
+                            dataGridView3.Rows[rowIndex].Cells[5].Value = reader["TOTALUNIT"];
+                            dataGridView3.Rows[rowIndex].Cells[6].Value = reader["PERUNITEQUALS"];
+                            dataGridView3.Rows[rowIndex].Cells[7].Value = reader["TOTALPRICE"];
+                        }
+                    }
+                }
+
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (dataGridView3.SelectedRows.Count == 1)
+            {
+                DataGridViewRow selectedRow = dataGridView3.SelectedRows[0];
+
+                updateid.Text = selectedRow.Cells[0].Value?.ToString();
+                updatename.Text = selectedRow.Cells[1].Value?.ToString();
+                update_p_p.Text = selectedRow.Cells[3].Value?.ToString();
+                update_r_price.Text = selectedRow.Cells[4].Value?.ToString();
+                updateunits.Text = selectedRow.Cells[5].Value?.ToString();
+                updateperunit.Text = selectedRow.Cells[6].Value?.ToString();
+
+            }
+            else
+            {
+                MessageBox.Show("Please select a row first.");
+            }
         }
 
-        private void label14_Click(object sender, EventArgs e)
+        private Boolean updateCheck()
         {
+            if (string.IsNullOrEmpty(updateid.Text))
+            {
+                MessageBox.Show("Search and then select row first!");
+                return false;
+            }
 
+            if (string.IsNullOrEmpty(updatename.Text))
+            {
+                MessageBox.Show("Name is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(update_p_p.Text))
+            {
+                MessageBox.Show("Purchase Price is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(update_r_price.Text))
+            {
+                MessageBox.Show("Retail Price is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(updateunits.Text))
+            {
+                MessageBox.Show("Total Units is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(updateperunit.Text))
+            {
+                MessageBox.Show("Per Units equal is empty");
+                return false;
+            }
+            return true;
+        }
+        private void button20_Click(object sender, EventArgs e)
+        {
+            if (!updateCheck())
+            {
+                return;
+            }
+
+            int id = int.Parse(updateid.Text);
+            string name = updatename.Text;
+            decimal purchasePrice = decimal.Parse(update_p_p.Text);
+            decimal retailPrice = decimal.Parse(update_r_price.Text);
+            decimal totalUnits = decimal.Parse(updateunits.Text);
+            decimal perUnit = decimal.Parse(updateperunit.Text);
+
+            int quantity = ((int)totalUnits) * ((int)perUnit);
+            decimal totalPrice = quantity * purchasePrice;
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                string query = @"UPDATE cosmetics_store
+                     SET name = :name,
+                         quantity = :quantity,
+                         purchaseprice = :purchasePrice,
+                         retailprice = :retailPrice,
+                         totalunit = :totalUnit,
+                         perunitequals = :perUnitEquals,
+                         totalprice = :totalPrice
+                     WHERE id = :id";
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    // Add parameters to avoid SQL injection and properly assign values
+                    cmd.Parameters.Add(":name", name);
+                    cmd.Parameters.Add(":quantity", quantity);
+                    cmd.Parameters.Add(":purchasePrice", purchasePrice);
+                    cmd.Parameters.Add(":retailPrice", retailPrice);
+                    cmd.Parameters.Add(":totalUnit", totalUnits);
+                    cmd.Parameters.Add(":perUnitEquals", perUnit);
+                    cmd.Parameters.Add(":totalPrice", totalPrice);
+                    cmd.Parameters.Add(":id", id);
+
+                    // Execute the update command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Confirm if the update was successful
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Record updated successfully!");
+                        updateclear();
+                        updateSearch();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found with the specified ID.");
+                    }
+
+                    if (conn.State != ConnectionState.Closed)
+                    {
+                        conn.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
-        private void unitequalsbox_TextChanged(object sender, EventArgs e)
+        private void button19_Click(object sender, EventArgs e)
         {
-
+            updateclear();
+            updatesearch.Text = "";
+            dataGridView3.Rows.Clear();
         }
 
-        private void panel17_Paint(object sender, PaintEventArgs e)
+        private void updateclear()
         {
+            updateid.Text = "";
+            updatename.Text = "";
+            update_p_p.Text = "";
+            update_r_price.Text = "";
+            updateunits.Text = "";
+            updateperunit.Text = "";
+        }
 
+        private void button17_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Ensure the database connection is open
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                if (dataGridView3.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dataGridView3.SelectedRows[0];
+
+                    string ids = selectedRow.Cells[0].Value?.ToString();
+
+
+
+                    int id = int.Parse(ids);
+
+                    // SQL query to delete the row where the ID matches
+                    string query = "DELETE FROM cosmetics_store WHERE id = :id";
+
+                    using (OracleCommand cmd = new OracleCommand(query, conn))
+                    {
+                        // Add the ID parameter to the command
+                        cmd.Parameters.Add(":id", id);
+
+                        // Execute the delete command
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        // Confirm if the deletion was successful
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Record deleted successfully!");
+                            updateSearch();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No record found with the specified ID.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row first.");
+                }
+
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+
+            }
         }
     }
 }
