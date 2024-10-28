@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Cosmetics_Store
 {
@@ -269,6 +270,191 @@ namespace Cosmetics_Store
             {
                 e.Handled = true; // Suppress the key press event if a second decimal point is entered
             }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            returnSearch();
+        }
+
+        private void returnSearch()
+        {
+            string Name = returnsearch.Text;
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // Update the query to use the LIKE operator for partial matches
+                string qu = "SELECT id, name, quantity FROM cosmetics_store WHERE LOWER(name) LIKE :Name";
+
+                using (OracleCommand cmd = new OracleCommand(qu, conn))
+                {
+                    // Use parameter binding with lowercase conversion for case-insensitive matching
+                    cmd.Parameters.Add(new OracleParameter("Name", "%" + Name.ToLower() + "%"));
+
+                    // Execute the command and fill the DataGridView
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear existing rows before adding new ones
+                        dataGridView2.Rows.Clear();
+
+                        // Check if any data is returned
+                        if (reader.HasRows)
+                        {
+                            while (reader.Read())
+                            {
+                                // Add data to each column in the DataGridView
+                                int rowIndex = dataGridView2.Rows.Add();
+                                dataGridView2.Rows[rowIndex].Cells[0].Value = reader["id"].ToString();
+                                dataGridView2.Rows[rowIndex].Cells[1].Value = reader["name"].ToString();
+                                dataGridView2.Rows[rowIndex].Cells[2].Value = reader["quantity"].ToString();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No matching records found.");
+                        }
+                    }
+                }
+
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            
+            if (button28.Text.Equals("Edit"))
+            {
+                if (dataGridView2.SelectedRows.Count > 0)
+                {
+                    // Get the selected row (assuming only one row is selected due to MultiSelect = false)
+                    DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
+
+                    // Retrieve data from specific columns in the selected row
+                    String id = selectedRow.Cells[0].Value?.ToString();
+                    string name = selectedRow.Cells[1].Value?.ToString();
+                    string quantity = selectedRow.Cells[2].Value?.ToString();
+
+                    rid.Text = id;
+                    returnname.Text = name;
+                    //returnquantity.Text = quantity;
+
+                    button28.Text = "Update";
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select a row first.");
+                }
+            }
+            else if (button28.Text.Equals("Update"))
+            {
+                int addQty;
+                if (!int.TryParse(returnquantity.Text, out addQty))
+                {
+                    MessageBox.Show("Please enter a valid number for the quantity.");
+                    return;
+                }
+
+                int ids;
+                if (!int.TryParse(rid.Text, out ids))
+                {
+                    MessageBox.Show("Invalid ID format.");
+                    return;
+                }
+
+                try
+                {
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    // Oracle query to update quantity by adding the input value to the existing quantity
+                    string query = "UPDATE cosmetics_store SET quantity = quantity + :additionalQuantity WHERE id = :id";
+
+                    using (OracleCommand cmd = new OracleCommand(query, conn))
+                    {
+                        cmd.Parameters.Add(":additionalQuantity", addQty);
+                        cmd.Parameters.Add(":id", ids);
+
+                        int rowsAffected = cmd.ExecuteNonQuery(); // Execute the query
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Quantity updated successfully!");
+                            button28.Text = "Edit";
+                            rid.Text = "";
+                            returnname.Text = "";
+                            returnquantity.Text = "";
+                            returnSearch();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No matching record found for the specified ID.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+            }
+        }
+
+        private void returnquantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                // Suppress the key press event so the character is not entered
+                e.Handled = true;
+            }
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            button28.Text = "Edit";
+            rid.Text = "";
+            returnname.Text = "";
+            returnquantity.Text = "";
+            dataGridView2.Rows.Clear();
+        }
+
+        private void label30_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void unitbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void unitequalsbox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel17_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
