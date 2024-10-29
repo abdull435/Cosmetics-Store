@@ -66,6 +66,7 @@ namespace Cosmetics_Store
             addProductspanel.Visible = false;
             billcheckpanel.Visible = false;
             viewallpanel.Visible = true;
+            viewAll();
         }
 
         private void button26_Click(object sender, EventArgs e)
@@ -99,24 +100,34 @@ namespace Cosmetics_Store
         private void button15_Click(object sender, EventArgs e)
         {
             returnpanel.Visible = false;
+            button28.Text = "Edit";
+            rid.Text = "";
+            returnname.Text = "";
+            returnquantity.Text = "";
+            dataGridView2.Rows.Clear();
             mainpanel.Visible = true;
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
             viewallpanel.Visible = false;
+            viewsearch.Text = "";
             mainpanel.Visible = true;
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
             updateproductspanel.Visible = false;
+            updateclear();
+            updatesearch.Text = "";
+            dataGridView3.Rows.Clear();
             mainpanel.Visible = true;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             addProductspanel.Visible = false;
+            clearaddproducts();
             mainpanel.Visible = true;
         }
 
@@ -698,5 +709,146 @@ namespace Cosmetics_Store
 
             }
         }
+
+        private void viewAll()
+        {
+            try
+            {
+                // Ensure the database connection is open
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // SQL query to retrieve data from COSMETICS_STORE
+                string query = "SELECT ID, NAME, QUANTITY, PURCHASEPRICE, RETAILPRICE, TOTALUNIT, PERUNITEQUALS, TOTALPRICE FROM COSMETICS_STORE";
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Clear existing rows in dataGridView5
+                        dataGridView5.Rows.Clear();
+
+                        // Loop through each row in the data reader
+                        while (reader.Read())
+                        {
+                            // Create a new row for each record
+                            int rowIndex = dataGridView5.Rows.Add();
+
+                            // Set each cell in the row manually
+                            dataGridView5.Rows[rowIndex].Cells[0].Value = reader["ID"];
+                            dataGridView5.Rows[rowIndex].Cells[1].Value = reader["NAME"];
+                            dataGridView5.Rows[rowIndex].Cells[2].Value = reader["QUANTITY"];
+                            dataGridView5.Rows[rowIndex].Cells[3].Value = reader["PURCHASEPRICE"];
+                            dataGridView5.Rows[rowIndex].Cells[4].Value = reader["RETAILPRICE"];
+                            dataGridView5.Rows[rowIndex].Cells[5].Value = reader["TOTALUNIT"];
+                            dataGridView5.Rows[rowIndex].Cells[6].Value = reader["PERUNITEQUALS"];
+                            dataGridView5.Rows[rowIndex].Cells[7].Value = reader["TOTALPRICE"];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection if it's open
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
+
+        }
+        private void button43_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            SearchAndLoadData();
+        }
+
+        private void SearchAndLoadData()
+        {
+            string searchInput = viewsearch.Text.Trim(); // Trim whitespace from input
+
+            // Clear existing rows in DataGridView
+            dataGridView5.Rows.Clear();
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // Determine whether the input is numeric (ID) or text (name)
+                bool isNumeric = int.TryParse(searchInput, out int id);
+
+                // Choose the query based on the input type
+                string query;
+                if (isNumeric)
+                {
+                    // Query by ID
+                    query = "SELECT ID, NAME, QUANTITY, PURCHASEPRICE, RETAILPRICE, TOTALUNIT, PERUNITEQUALS, TOTALPRICE " +
+                            "FROM COSMETICS_STORE WHERE ID = :id";
+                }
+                else
+                {
+                    // Query by Name (partial match using LIKE)
+                    query = "SELECT ID, NAME, QUANTITY, PURCHASEPRICE, RETAILPRICE, TOTALUNIT, PERUNITEQUALS, TOTALPRICE " +
+                            "FROM COSMETICS_STORE WHERE NAME LIKE :name";
+                }
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    // Set the appropriate parameter based on the input type
+                    if (isNumeric)
+                    {
+                        cmd.Parameters.Add(new OracleParameter(":id", id));
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add(new OracleParameter(":name", $"%{searchInput}%"));
+                    }
+
+                    // Execute the query with a DataReader
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Loop through each row in the result set
+                        while (reader.Read())
+                        {
+                            // Add a new row to DataGridView with values from the reader
+                            int rowIndex = dataGridView5.Rows.Add();
+                            dataGridView5.Rows[rowIndex].Cells[0].Value = reader["ID"];
+                            dataGridView5.Rows[rowIndex].Cells[1].Value = reader["NAME"];
+                            dataGridView5.Rows[rowIndex].Cells[2].Value = reader["QUANTITY"];
+                            dataGridView5.Rows[rowIndex].Cells[3].Value = reader["PURCHASEPRICE"];
+                            dataGridView5.Rows[rowIndex].Cells[4].Value = reader["RETAILPRICE"];
+                            dataGridView5.Rows[rowIndex].Cells[5].Value = reader["TOTALUNIT"];
+                            dataGridView5.Rows[rowIndex].Cells[6].Value = reader["PERUNITEQUALS"];
+                            dataGridView5.Rows[rowIndex].Cells[7].Value = reader["TOTALPRICE"];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
     }
 }
