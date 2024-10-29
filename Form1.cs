@@ -252,10 +252,28 @@ namespace Cosmetics_Store
 
         private void quantitybox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            if (char.IsControl(e.KeyChar))
             {
-                // Suppress the key press event so the character is not entered
-                e.Handled = true;
+                return; // Allow control keys
+            }
+
+            // Check if the character is a digit
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Suppress non-digit characters
+                return;
+            }
+
+            // Allow only digits greater than 0
+            if (quantitybox.Text.Length == 0 && e.KeyChar == '0')
+            {
+                e.Handled = true; // Suppress '0' as the first character
+            }
+
+            // Additional check to ensure only valid numbers are allowed
+            if (quantitybox.Text == "0" && e.KeyChar != '\0')
+            {
+                e.Handled = true; // Suppress any character after '0'
             }
         }
 
@@ -850,5 +868,223 @@ namespace Cosmetics_Store
             }
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void medicinebox_TextChanged(object sender, EventArgs e)
+        {
+            LoadMatchingNames(medicinebox.Text);
+        }
+
+        private void LoadMatchingNames(string searchName)
+        {
+            // Clear existing rows in DataGridView
+            dataGridView1.Rows.Clear();
+
+            if (string.IsNullOrWhiteSpace(searchName))
+            {
+                return; // If the search box is empty, don't perform any search
+            }
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // SQL query for partial match on the NAME column
+                string query = "SELECT NAME FROM COSMETICS_STORE WHERE NAME LIKE :name and quantity>0";
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    // Set the parameter with the search term, using '%' for partial match
+                    cmd.Parameters.Add(new OracleParameter(":name", $"%{searchName}%"));
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Loop through each row in the result set
+                        while (reader.Read())
+                        {
+                            // Add a new row in DataGridView and set the NAME in the first column (index 0)
+                            int rowIndex = dataGridView1.Rows.Add();
+                            dataGridView1.Rows[rowIndex].Cells[0].Value = reader["NAME"];
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                // Get the value from the clicked cell
+                string cellValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+
+                // Copy the cell value to the TextBox
+                medicinebox.Text = cellValue;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(medicinebox.Text))
+            {
+                MessageBox.Show("Please enter a Name.");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(quantitybox.Text))
+            {
+                MessageBox.Show("Please enter a Quantity.");
+                return;
+            }
+                string name = medicinebox.Text;
+                int qty=int.Parse(quantitybox.Text);
+
+                // Retrieve the name and quantity from textboxes
+                string searchName = medicinebox.Text;
+                int specifiedQuantity= int.Parse(quantitybox.Text);
+
+                try
+                {
+                    // Open the connection if it's not already open
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    // Query to retrieve the quantity based on the name
+                    string query = "SELECT quantity FROM cosmetics_store WHERE name = :name";
+                    using (OracleCommand cmd = new OracleCommand(query, conn))
+                    {
+                        cmd.Parameters.Add(":name", searchName);
+
+                        // Execute the query and retrieve the quantity
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            int existingQuantity = Convert.ToInt32(result);
+
+                            // Check if the existing quantity is equal to or less than the specified quantity
+                            if (specifiedQuantity <= existingQuantity)
+                            {
+                                AddToDataGrid();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Availale quantity is: " + existingQuantity);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No record found with the specified name.");
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+                finally
+                {
+                    // Close the connection
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                }
+        }
+
+        private void AddToDataGrid()
+        {
+            // Get the name and quantity from the text boxes
+            string name = medicinebox.Text;
+            int quantity;
+
+            // Validate that quantity is a positive integer
+            if (!int.TryParse(quantitybox.Text, out quantity) || quantity <= 0)
+            {
+                MessageBox.Show("Please enter a valid positive quantity.");
+                return;
+            }
+
+            decimal price = 0;
+
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // Retrieve the retail price for the product name from the database
+                string query = "SELECT RETAILPRICE FROM cosmetics_store WHERE NAME = :name";
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    cmd.Parameters.Add(":name", name);
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        price = Convert.ToDecimal(result); // Get the retail price
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found for the specified name.");
+                        return;
+                    }
+                }
+
+                // Calculate the total cost
+                decimal total = price * quantity;
+
+                // Generate the serial number based on the current number of rows
+                int serialNumber = dataGridView4.Rows.Count + 1;
+
+                // Add data to the DataGridView
+                int rowIndex = dataGridView4.Rows.Add();
+                dataGridView4.Rows[rowIndex].Cells[0].Value = serialNumber;  // Serial Number
+                dataGridView4.Rows[rowIndex].Cells[1].Value = name;          // Name
+                dataGridView4.Rows[rowIndex].Cells[2].Value = price;         // Price
+                dataGridView4.Rows[rowIndex].Cells[3].Value = quantity;      // Quantity
+                dataGridView4.Rows[rowIndex].Cells[4].Value = total;         // Total
+
+                // Clear the input fields for the next entry
+                medicinebox.Text = "";
+                quantitybox.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
+
+
+        private void setStock()
+        {
+
+        }
     }
 }
