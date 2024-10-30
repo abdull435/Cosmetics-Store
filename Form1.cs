@@ -286,17 +286,7 @@ namespace Cosmetics_Store
             }
         }
 
-        private void discountbox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true; // Suppress the key press event if the character is not valid
-            }
-            if (e.KeyChar == '.' && ((System.Windows.Forms.TextBox)sender).Text.Contains("."))
-            {
-                e.Handled = true; // Suppress the key press event if a second decimal point is entered
-            }
-        }
+
 
         private void button30_Click(object sender, EventArgs e)
         {
@@ -408,7 +398,7 @@ namespace Cosmetics_Store
                         conn.Open();
                     }
 
-                    string query = "UPDATE cosmetics_store SET quantity = quantity + :additionalQuantity WHERE id = :id";
+                    string query = "UPDATE cosmetics_store  quantity = quantity + :additionalQuantity WHERE id = :id";
 
                     using (OracleCommand cmd = new OracleCommand(query, conn))
                     {
@@ -783,7 +773,7 @@ namespace Cosmetics_Store
         }
         private void button43_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button23_Click(object sender, EventArgs e)
@@ -870,7 +860,9 @@ namespace Cosmetics_Store
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            discountbox.Enabled = false;
+            receivedbox.Enabled = false;
+            todaysSale();
         }
 
         private void medicinebox_TextChanged(object sender, EventArgs e)
@@ -953,61 +945,70 @@ namespace Cosmetics_Store
                 MessageBox.Show("Please enter a Quantity.");
                 return;
             }
-                string name = medicinebox.Text;
-                int qty=int.Parse(quantitybox.Text);
+            string name = medicinebox.Text;
+            int qty = int.Parse(quantitybox.Text);
 
-                // Retrieve the name and quantity from textboxes
-                string searchName = medicinebox.Text;
-                int specifiedQuantity= int.Parse(quantitybox.Text);
-
-                try
+            for(int i = 0; i < dataGridView4.Rows.Count; i++)
+            {
+                if(dataGridView4.Rows[i].Cells[1].Value.ToString() == name)
                 {
-                    // Open the connection if it's not already open
-                    if (conn.State != ConnectionState.Open)
-                    {
-                        conn.Open();
-                    }
+                    MessageBox.Show("Product is all ready added.");
+                    return;
+                }
+            }
 
-                    // Query to retrieve the quantity based on the name
-                    string query = "SELECT quantity FROM cosmetics_store WHERE name = :name";
-                    using (OracleCommand cmd = new OracleCommand(query, conn))
-                    {
-                        cmd.Parameters.Add(":name", searchName);
+            // Retrieve the name and quantity from textboxes
+            string searchName = medicinebox.Text;
+            int specifiedQuantity = int.Parse(quantitybox.Text);
 
-                        // Execute the query and retrieve the quantity
-                        object result = cmd.ExecuteScalar();
-                        if (result != null)
+            try
+            {
+                // Open the connection if it's not already open
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // Query to retrieve the quantity based on the name
+                string query = "SELECT quantity FROM cosmetics_store WHERE name = :name";
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    cmd.Parameters.Add(":name", searchName);
+
+                    // Execute the query and retrieve the quantity
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        int existingQuantity = Convert.ToInt32(result);
+
+                        // Check if the existing quantity is equal to or less than the specified quantity
+                        if (specifiedQuantity <= existingQuantity)
                         {
-                            int existingQuantity = Convert.ToInt32(result);
-
-                            // Check if the existing quantity is equal to or less than the specified quantity
-                            if (specifiedQuantity <= existingQuantity)
-                            {
-                                AddToDataGrid();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Availale quantity is: " + existingQuantity);
-                            }
+                            AddToDataGrid();
                         }
                         else
                         {
-                            MessageBox.Show("No record found with the specified name.");
+                            MessageBox.Show("Availale quantity is: " + "\"" + existingQuantity + "\"");
                         }
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occurred: " + ex.Message);
-                }
-                finally
-                {
-                    // Close the connection
-                    if (conn.State == ConnectionState.Open)
+                    else
                     {
-                        conn.Close();
+                        MessageBox.Show("No record found with the specified name.");
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Close the connection
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
         }
 
         private void AddToDataGrid()
@@ -1023,7 +1024,7 @@ namespace Cosmetics_Store
                 return;
             }
 
-            decimal price = 0;
+            decimal saleprice = 0, purchaseprice = 0;
 
             try
             {
@@ -1033,25 +1034,28 @@ namespace Cosmetics_Store
                 }
 
                 // Retrieve the retail price for the product name from the database
-                string query = "SELECT RETAILPRICE FROM cosmetics_store WHERE NAME = :name";
+                string query = "SELECT PURCHASEPRICE, RETAILPRICE FROM cosmetics_store WHERE NAME = :name";
                 using (OracleCommand cmd = new OracleCommand(query, conn))
                 {
                     cmd.Parameters.Add(":name", name);
-                    object result = cmd.ExecuteScalar();
 
-                    if (result != null)
+                    using (OracleDataReader reader = cmd.ExecuteReader())
                     {
-                        price = Convert.ToDecimal(result); // Get the retail price
-                    }
-                    else
-                    {
-                        MessageBox.Show("No record found for the specified name.");
-                        return;
+                        if (reader.Read())
+                        {
+                            purchaseprice = reader.GetDecimal(0); // Get PURCHASEPRICE
+                            saleprice = reader.GetDecimal(1);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No record found for the specified name.");
+                            return;
+                        }
                     }
                 }
 
-                // Calculate the total cost
-                decimal total = price * quantity;
+                decimal profit = (quantity * saleprice) - (purchaseprice * quantity);
+                decimal total = saleprice * quantity;
 
                 // Generate the serial number based on the current number of rows
                 int serialNumber = dataGridView4.Rows.Count + 1;
@@ -1060,11 +1064,29 @@ namespace Cosmetics_Store
                 int rowIndex = dataGridView4.Rows.Add();
                 dataGridView4.Rows[rowIndex].Cells[0].Value = serialNumber;  // Serial Number
                 dataGridView4.Rows[rowIndex].Cells[1].Value = name;          // Name
-                dataGridView4.Rows[rowIndex].Cells[2].Value = price;         // Price
+                dataGridView4.Rows[rowIndex].Cells[2].Value = saleprice;         // Price
                 dataGridView4.Rows[rowIndex].Cells[3].Value = quantity;      // Quantity
                 dataGridView4.Rows[rowIndex].Cells[4].Value = total;         // Total
+                dataGridView4.Rows[rowIndex].Cells[5].Value = profit;         // Profit
 
-                // Clear the input fields for the next entry
+                payablebox.Text = totalCount().ToString();
+
+
+                if (!string.IsNullOrEmpty(discountbox.Text))
+                {
+                    decimal getpayable = totalCount();
+                    decimal getDiscount = decimal.Parse(discountbox.Text) / 100;
+
+                    decimal returncount = getpayable * getDiscount;
+                    returncount = getpayable - returncount;
+                    payablebox.Text = returncount.ToString();
+
+                }
+                else
+                {
+                    payablebox.Text = totalCount().ToString();
+                }
+
                 medicinebox.Text = "";
                 quantitybox.Text = "";
             }
@@ -1081,9 +1103,358 @@ namespace Cosmetics_Store
             }
         }
 
-
-        private void setStock()
+        private void button5_Click(object sender, EventArgs e)
         {
+            if (dataGridView4.SelectedRows.Count > 0)
+            {
+                // Get the index of the selected row
+                int selectedIndex = dataGridView4.SelectedRows[0].Index;
+
+                decimal setTotal = decimal.Parse(dataGridView4.Rows[selectedIndex].Cells[4].Value.ToString());
+                dataGridView4.Rows.RemoveAt(selectedIndex);
+
+                setTotal = decimal.Parse(payablebox.Text) - setTotal;
+
+
+                payablebox.Text = setTotal.ToString();
+
+                if (dataGridView4.Rows.Count == 0)
+                {
+                    payablebox.Text = "0";
+                    discountbox.Text = "";
+                    discountbox.Enabled = false;
+                    receivedbox.Text = "";
+                    receivedbox.Enabled = false;
+                }
+
+                afterDiscount();
+
+                // Update the serial numbers in the first column
+                for (int i = 0; i < dataGridView4.Rows.Count; i++)
+                {
+                    // Set the serial number in the first column, starting from 0
+                    dataGridView4.Rows[i].Cells[0].Value = i + 1;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a row to delete.");
+            }
+        }
+
+        private void receivedbox_TextChanged(object sender, EventArgs e)
+        {
+            setReturn();
+        }
+
+        private void setReturn()
+        {
+            if (!string.IsNullOrEmpty(receivedbox.Text))
+            {
+                decimal getpayable = decimal.Parse(payablebox.Text);
+                decimal getreceived = decimal.Parse(receivedbox.Text);
+                decimal returncount = getreceived - getpayable;
+                returnbox.Text = returncount.ToString();
+            }
+            else
+            {
+                returnbox.Text = "0";
+            }
+        }
+
+        private decimal totalCount()
+        {
+            decimal total = 0;
+            for (int i = 0; i < dataGridView4.Rows.Count; i++)
+            {
+                decimal payable = decimal.Parse(dataGridView4.Rows[i].Cells[4].Value.ToString());
+                total = payable + total;
+            }
+
+            return total;
+        }
+
+        private void discountbox_TextChanged(object sender, EventArgs e)
+        {
+            afterDiscount();
+            setReturn();
+        }
+
+
+        private void afterDiscount()
+        {
+            if (!string.IsNullOrEmpty(discountbox.Text))
+            {
+                decimal getpayable = totalCount();
+                decimal getDiscount = decimal.Parse(discountbox.Text) / 100;
+
+                decimal returncount = getpayable * getDiscount;
+                returncount = getpayable - returncount;
+                payablebox.Text = returncount.ToString();
+
+            }
+            else
+            {
+                payablebox.Text = totalCount().ToString();
+            }
+        }
+
+        private void discountbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+            {
+                return; // Allow control characters
+            }
+
+            // Allow only digits (0-9)
+            if (!char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Suppress the key press event if the character is not valid
+                return;
+            }
+
+            // If the user is entering a digit, check the current value
+            string currentText = discountbox.Text;
+
+            // If the current text is "100", no further input is allowed
+            if (currentText == "100" && char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Prevent adding another digit
+                return;
+            }
+
+            // Allow up to 3 digits
+            if (currentText.Length >= 2 && char.IsDigit(e.KeyChar))
+            {
+                int newValue = int.Parse(currentText + e.KeyChar);
+                if (newValue > 100)
+                {
+                    e.Handled = true; // Prevent input if it exceeds 100
+                }
+            }
+        }
+
+        private void payablebox_TextChanged(object sender, EventArgs e)
+        {
+            setReturn();
+            if (decimal.TryParse(discountbox.Text, out decimal discountBox) && discountBox == 100)
+            {
+                return;
+            }
+            if (decimal.TryParse(payablebox.Text, out decimal payableValue) && payableValue <= 0)
+            {
+                discountbox.Text = "";
+                discountbox.Enabled = false;
+                receivedbox.Text = "";
+                receivedbox.Enabled = false;
+            }
+            else
+            {
+                discountbox.Enabled = true;
+                receivedbox.Enabled = true;
+            }
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to clear all fields?", "Confirm Clears",MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                mainClears();
+            }
+        }
+
+        private void mainClears()
+        {
+            dataGridView1.Rows.Clear();
+            dataGridView4.Rows.Clear();
+            medicinebox.Text = "";
+            quantitybox.Text = "";
+            payablebox.Text = "0";
+            returnbox.Text = "0";
+            discountbox.Text = "";
+            receivedbox.Text = "";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            insertSale();
+        }
+
+        public void insertSale()
+        {
+            decimal total = 0, discount=0, grandTotal=0, receivedMoney = 0, returnMoney = 0,  profit=0;
+            grandTotal = decimal.Parse(payablebox.Text);                        
+            returnMoney = decimal.Parse(returnbox.Text);
+            total = grandTotal;
+
+            if (!string.IsNullOrEmpty(receivedbox.Text))
+            {
+                receivedMoney = decimal.Parse(receivedbox.Text);
+            }
+            if (!string.IsNullOrEmpty(discountbox.Text))
+            {
+                discount = decimal.Parse(discountbox.Text);
+                total = grandTotal * (discount/100);
+                total = grandTotal + total;
+            }
+
+                for (int i = 0; i < dataGridView4.Rows.Count; i++)
+                {
+                    profit=decimal.Parse(dataGridView4.Rows[i].Cells[5].Value.ToString())+profit;
+                
+                }
+                
+                {
+                    try
+                    {
+                        // Step 1: Open the connection if it's closed
+                        if (conn.State != ConnectionState.Open)
+                        {
+                            conn.Open();
+                        }
+
+                        // Step 2: Get the total number of records in the SALES table
+                        int newSaleId = 1; // Default starting value
+                        string countQuery = "SELECT COUNT(*) FROM SALES";
+
+                        using (OracleCommand countCmd = new OracleCommand(countQuery, conn))
+                        {
+                            newSaleId = Convert.ToInt32(countCmd.ExecuteScalar()) + 1; // Increment count for new SALEID
+                        }
+
+                        // Step 3: Insert a new sale record using the incremented SALEID
+                        string insertQuery = "INSERT INTO SALES (SALEID, TOTAL, DISCOUNT, GRANDTOTAL, RECIEVEDMONEY, RETURNMONEY, DATETIME, PROFIT) " +
+                                             "VALUES (:saleId, :total, :discount, :grandTotal, :receivedMoney, :returnMoney, SYSDATE, :profit)";
+
+                        using (OracleCommand insertCmd = new OracleCommand(insertQuery, conn))
+                        {
+                            insertCmd.Parameters.Add(":saleId", newSaleId);
+                            insertCmd.Parameters.Add(":total", total);
+                            insertCmd.Parameters.Add(":discount", discount);
+                            insertCmd.Parameters.Add(":grandTotal", grandTotal);
+                            insertCmd.Parameters.Add(":receivedMoney", receivedMoney);
+                            insertCmd.Parameters.Add(":returnMoney", returnMoney);
+                            insertCmd.Parameters.Add(":profit", profit);
+
+                            insertCmd.ExecuteNonQuery(); // Execute the insertion
+                        }
+
+                        InsertSaleItems(newSaleId);
+                        MessageBox.Show("Sale added successfully.");
+                        mainClears();
+                        todaysSale();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle exceptions (e.g., log the error, show a message to the user)
+                        MessageBox.Show("An error occurred: " + ex.Message);
+                    }
+                    finally
+                    {
+                        // Step 4: Ensure the connection is closed if it's open
+                        if (conn.State == ConnectionState.Open)
+                        {
+                            conn.Close();
+                        }
+                    }
+                }
+        }
+
+        public void InsertSaleItems(int saleId)
+        {
+                try
+                {
+                    // Open the connection if it's closed
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    // Prepare the SQL insert query
+                    string insertQuery = "INSERT INTO SALEITEMS (SALEID, NAME, PRICE, QUANTITY, TOTAL) " +
+                                         "VALUES (:saleId, :name, :price, :quantity, :total)";
+
+                    foreach (DataGridViewRow row in dataGridView4.Rows)
+                    {
+                        // Check if the row is not a new row (to avoid the empty row at the end)
+                        if (!row.IsNewRow)
+                        {
+                            // Retrieve values from the DataGridView
+                            string name = row.Cells[1].Value?.ToString();
+                            decimal price = Convert.ToDecimal(row.Cells[2].Value);
+                            int quantity = Convert.ToInt32(row.Cells[3].Value);
+                            decimal total = Convert.ToDecimal(row.Cells[4].Value);
+
+                            using (OracleCommand insertCmd = new OracleCommand(insertQuery, conn))
+                            {
+                                // Add parameters to the command
+                                insertCmd.Parameters.Add(":saleId", saleId);
+                                insertCmd.Parameters.Add(":name", name);
+                                insertCmd.Parameters.Add(":price", price);
+                                insertCmd.Parameters.Add(":quantity", quantity);
+                                insertCmd.Parameters.Add(":total", total);
+
+                                // Execute the command to insert the sale item
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions (log the error, show a message)
+                    MessageBox.Show("An error occurred: " + ex.Message);
+                }
+                finally
+                {
+                    // Ensure the connection is closed if it's open
+                    if (conn.State == ConnectionState.Open)
+                    {
+                        conn.Close();
+                    }
+                }
+        }
+
+        private void todaysSale()
+        {
+            decimal totalGrandTotal = 0; // Initialize variable to hold the total
+
+            try
+            {
+                // Open connection if it's closed
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // SQL query to get the sum of grand totals for today's date
+                string query = "SELECT SUM(GRANDTOTAL) FROM SALES WHERE TRUNC(DATETIME) = TRUNC(SYSDATE)";
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    object result = cmd.ExecuteScalar(); // Execute the query and get the result
+
+                    if (result != DBNull.Value)
+                    {
+                        totalGrandTotal = Convert.ToDecimal(result); // Convert the result to decimal
+                    }
+                }
+                today.Text = totalGrandTotal.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed if it was opened
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
 
         }
     }
