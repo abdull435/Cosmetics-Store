@@ -95,6 +95,8 @@ namespace Cosmetics_Store
         {
             recordpanel.Visible = false;
             mainpanel.Visible = true;
+            totalsale.Text = "0";
+            totalprofit.Text = "0";
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -211,8 +213,52 @@ namespace Cosmetics_Store
             unitequalsbox.Text = "";
         }
 
+        private Boolean addCheck()
+        {
+
+            if (string.IsNullOrEmpty(namebox.Text))
+            {
+                MessageBox.Show("Name is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(p_pricebox.Text))
+            {
+                MessageBox.Show("Purchase Price is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(r_pricebox.Text))
+            {
+                MessageBox.Show("Retail Price is empty!");
+                return false;
+            }
+
+            if (decimal.Parse((p_pricebox.Text)) > decimal.Parse((r_pricebox.Text)))
+            {
+                MessageBox.Show("PurchasePrice is not greater then SalePrice!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(unitbox.Text))
+            {
+                MessageBox.Show("Total Units is empty!");
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(unitequalsbox.Text))
+            {
+                MessageBox.Show("Per Units equal is empty");
+                return false;
+            }
+            return true;
+        }
         private void button16_Click(object sender, EventArgs e)
         {
+            if (!addCheck())
+            {
+                return;
+            }
             try
             {
                 string name = namebox.Text;
@@ -552,6 +598,12 @@ namespace Cosmetics_Store
             if (string.IsNullOrEmpty(update_r_price.Text))
             {
                 MessageBox.Show("Retail Price is empty!");
+                return false;
+            }
+
+            if (decimal.Parse((update_p_p.Text))> decimal.Parse((update_r_price.Text)))
+            {
+                MessageBox.Show("PurchasePrice is not greater then SalePrice!");
                 return false;
             }
 
@@ -1456,6 +1508,66 @@ namespace Cosmetics_Store
                 }
             }
 
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            
+            decimal totalGrandTotal = 0;
+            decimal totalProfit = 0;
+
+            // Define start and end dates (make sure to set these appropriately)
+            DateTime startDate = dateTimePicker1.Value.Date; // Example start date
+            DateTime endDate = dateTimePicker2.Value.Date;   // Example end date
+
+            if(startDate > endDate)
+            {
+                MessageBox.Show("Start Date is not Greater then End Date");
+                return;
+            }
+            try
+            {
+                // Open connection if it's closed
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+
+                // SQL query to get the sum of grand totals and profits between the specified dates
+                string query = "SELECT SUM(GRANDTOTAL), SUM(PROFIT) FROM SALES WHERE TRUNC(DATETIME) BETWEEN :startDate AND :endDate";
+
+                using (OracleCommand cmd = new OracleCommand(query, conn))
+                {
+                    // Adding parameters to prevent SQL injection
+                    cmd.Parameters.Add(":startDate", startDate);
+                    cmd.Parameters.Add(":endDate", endDate);
+
+                    using (OracleDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            // Check if the results are not DBNull
+                            totalGrandTotal = reader.IsDBNull(0) ? 0 : reader.GetDecimal(0);
+                            totalProfit = reader.IsDBNull(1) ? 0 : reader.GetDecimal(1);
+                        }
+                    }
+                }
+
+                totalsale.Text= totalGrandTotal.ToString();
+                totalprofit.Text= totalProfit.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+            finally
+            {
+                // Ensure the connection is closed if it was opened
+                if (conn.State != ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
         }
     }
 }
