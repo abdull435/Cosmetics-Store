@@ -340,9 +340,13 @@ namespace Cosmetics_Store
         }
 
         private void returnSearch()
-        {
+        {            
+            if(string.IsNullOrEmpty(returnsearch.Text))
+            {
+                MessageBox.Show("Enter Name to search");
+                return;
+            }
             string Name = returnsearch.Text;
-
             try
             {
                 if (conn.State != ConnectionState.Open)
@@ -405,7 +409,7 @@ namespace Cosmetics_Store
                     DataGridViewRow selectedRow = dataGridView2.SelectedRows[0];
 
                     // Retrieve data from specific columns in the selected row
-                    String id = selectedRow.Cells[0].Value?.ToString();
+                    string id = selectedRow.Cells[0].Value?.ToString();
                     string name = selectedRow.Cells[1].Value?.ToString();
                     string quantity = selectedRow.Cells[2].Value?.ToString();
 
@@ -423,6 +427,17 @@ namespace Cosmetics_Store
             }
             else if (button28.Text.Equals("Update"))
             {
+                if (string.IsNullOrEmpty(returnname.Text))
+                {
+                    MessageBox.Show("You cann not select any row");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(returnquantity.Text))
+                {
+                    MessageBox.Show("First Enter QUantity");
+                    return;
+                }
                 int addQty;
                 if (!int.TryParse(returnquantity.Text, out addQty))
                 {
@@ -444,11 +459,32 @@ namespace Cosmetics_Store
                         conn.Open();
                     }
 
-                    string query = "UPDATE cosmetics_store  quantity = quantity + :additionalQuantity WHERE id = :id";
+                    decimal getQty = 0,totalUnits=0,perUnit=0;
+                    string getstock = "select QUANTITY, PERUNITEQUALS FROM cosmetics_store where id=:id";
+                    using (OracleCommand cmd = new OracleCommand(getstock, conn))
+                    {
+                        cmd.Parameters.Add(":id", ids);
+                        using(OracleDataReader reader= cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    getQty =decimal.Parse(reader["QUANTITY"].ToString());
+                                    perUnit = decimal.Parse(reader["PERUNITEQUALS"].ToString()) ;
+                                }
+                            }
+                        }
+                    }
+                    getQty += addQty;
+                    totalUnits = getQty / perUnit;
+                    
+                    string query = "UPDATE cosmetics_store set quantity = :quantity, TOTALUNIT=:totalunit WHERE id = :id";
 
                     using (OracleCommand cmd = new OracleCommand(query, conn))
                     {
-                        cmd.Parameters.Add(":additionalQuantity", addQty);
+                        cmd.Parameters.Add(":quantity", getQty);
+                        cmd.Parameters.Add(":totalunit",totalUnits);
                         cmd.Parameters.Add(":id", ids);
 
                         int rowsAffected = cmd.ExecuteNonQuery();
@@ -460,6 +496,7 @@ namespace Cosmetics_Store
                             rid.Text = "";
                             returnname.Text = "";
                             returnquantity.Text = "";
+                            returnsearch.Text = "";
                             returnSearch();
                         }
                         else
@@ -489,6 +526,7 @@ namespace Cosmetics_Store
             button28.Text = "Edit";
             rid.Text = "";
             returnname.Text = "";
+            returnsearch.Text = "";
             returnquantity.Text = "";
             dataGridView2.Rows.Clear();
         }
@@ -862,7 +900,7 @@ namespace Cosmetics_Store
                 {
                     // Query by Name (partial match using LIKE)
                     query = "SELECT ID, NAME, QUANTITY, PURCHASEPRICE, RETAILPRICE, TOTALUNIT, PERUNITEQUALS, TOTALPRICE " +
-                            "FROM COSMETICS_STORE WHERE NAME LIKE :name";
+                            "FROM COSMETICS_STORE WHERE LOWER(NAME) LIKE :name";
                 }
 
                 using (OracleCommand cmd = new OracleCommand(query, conn))
@@ -874,7 +912,7 @@ namespace Cosmetics_Store
                     }
                     else
                     {
-                        cmd.Parameters.Add(new OracleParameter(":name", $"%{searchInput}%"));
+                        cmd.Parameters.Add(new OracleParameter("Name", "%" + searchInput.ToLower() + "%"));
                     }
 
                     // Execute the query with a DataReader
@@ -1428,7 +1466,8 @@ namespace Cosmetics_Store
                     string insertQuery = "INSERT INTO SALEITEMS (SALEID, NAME, PRICE, QUANTITY, TOTAL) " +
                                          "VALUES (:saleId, :name, :price, :quantity, :total)";
 
-                    foreach (DataGridViewRow row in dataGridView4.Rows)
+                    
+                foreach (DataGridViewRow row in dataGridView4.Rows)
                     {
                         // Check if the row is not a new row (to avoid the empty row at the end)
                         if (!row.IsNewRow)
@@ -1439,7 +1478,42 @@ namespace Cosmetics_Store
                             int quantity = Convert.ToInt32(row.Cells[3].Value);
                             decimal total = Convert.ToDecimal(row.Cells[4].Value);
 
-                            using (OracleCommand insertCmd = new OracleCommand(insertQuery, conn))
+
+
+                        string get = "SELECT QUANTITY,PERUNITEQUALS FROM cosmetics_store where name=:name";                        
+
+                        decimal getQty = 0, totalUnit = 0, getPerUnit = 0;
+
+                        using (OracleCommand getdata = new OracleCommand(get, conn))
+                        {
+                            getdata.Parameters.Add(":name", name);
+
+                            using (OracleDataReader dataread = getdata.ExecuteReader()) 
+                            {
+                                if (dataread.HasRows) 
+                                {
+                                    while (dataread.Read()) 
+                                    {
+                                        getQty=decimal.Parse(dataread["QUANTITY"].ToString());
+                                        getPerUnit = decimal.Parse(dataread["PERUNITEQUALS"].ToString());
+                                    }
+                                }
+                            }
+                        }
+
+                        string qtyUpdate = "update cosmetics_store set QUANTITY =:quantity, TOTALUNIT=:perunitequals where name=:name";
+                        getQty -= quantity;
+                        totalUnit = getQty / getPerUnit;
+                        using(OracleCommand setData=new OracleCommand(qtyUpdate, conn))
+                        {
+                            setData.Parameters.Add(":quantity",getQty);
+                            setData.Parameters.Add(":perUnitequals",totalUnit);
+                            setData.Parameters.Add(":name",name);
+
+                            setData.ExecuteNonQuery();
+                        }
+
+                        using (OracleCommand insertCmd = new OracleCommand(insertQuery, conn))
                             {
                                 // Add parameters to the command
                                 insertCmd.Parameters.Add(":saleId", saleId);
@@ -1568,6 +1642,6 @@ namespace Cosmetics_Store
                     conn.Close();
                 }
             }
-        }
+        }    
     }
 }
