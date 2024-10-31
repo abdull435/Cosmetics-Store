@@ -104,8 +104,10 @@ namespace Cosmetics_Store
             returnpanel.Visible = false;
             button28.Text = "Edit";
             rid.Text = "";
+            returnsearch.Text = "";
             returnname.Text = "";
             returnquantity.Text = "";
+            
             dataGridView2.Rows.Clear();
             mainpanel.Visible = true;
         }
@@ -415,7 +417,6 @@ namespace Cosmetics_Store
 
                     rid.Text = id;
                     returnname.Text = name;
-                    //returnquantity.Text = quantity;
 
                     button28.Text = "Update";
 
@@ -912,7 +913,7 @@ namespace Cosmetics_Store
                     }
                     else
                     {
-                        cmd.Parameters.Add(new OracleParameter("Name", "%" + searchInput.ToLower() + "%"));
+                        cmd.Parameters.Add(new OracleParameter("Name", "%" + searchInput.ToLower() + "%")); 
                     }
 
                     // Execute the query with a DataReader
@@ -1194,10 +1195,16 @@ namespace Cosmetics_Store
         }
 
         private void button5_Click(object sender, EventArgs e)
-        {
+        {            
             if (dataGridView4.SelectedRows.Count > 0)
             {
-                // Get the index of the selected row
+                DialogResult result = MessageBox.Show("Are you sure you want to delete row?", "Confirm Clears", MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+
                 int selectedIndex = dataGridView4.SelectedRows[0].Index;
 
                 decimal setTotal = decimal.Parse(dataGridView4.Rows[selectedIndex].Cells[4].Value.ToString());
@@ -1222,9 +1229,11 @@ namespace Cosmetics_Store
                 // Update the serial numbers in the first column
                 for (int i = 0; i < dataGridView4.Rows.Count; i++)
                 {
-                    // Set the serial number in the first column, starting from 0
                     dataGridView4.Rows[i].Cells[0].Value = i + 1;
                 }
+
+                medicinebox.Text = "";
+                quantitybox.Text = "";
             }
             else
             {
@@ -1642,6 +1651,11 @@ namespace Cosmetics_Store
                     conn.Close();
                 }
             }
-        }    
+        }
+
+        private void returnsearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
