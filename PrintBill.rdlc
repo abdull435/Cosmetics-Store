@@ -537,7 +537,7 @@
             <Top>1.58737cm</Top>
             <Left>2.02502cm</Left>
             <Height>0.6cm</Height>
-            <Width>1.64793cm</Width>
+            <Width>1.78406cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -635,7 +635,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>3.14014cm</Top>
-            <Left>0.26654cm</Left>
+            <Left>0.27219cm</Left>
             <Height>0.6cm</Height>
             <Width>1.57079cm</Width>
             <ZIndex>5</ZIndex>
@@ -669,9 +669,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>3.14014cm</Top>
-            <Left>2.01937cm</Left>
+            <Left>2.02502cm</Left>
             <Height>0.6cm</Height>
-            <Width>1.64793cm</Width>
+            <Width>1.78406cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -702,7 +702,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.36375cm</Top>
-            <Left>0.33388cm</Left>
+            <Left>0.27219cm</Left>
             <Height>0.6cm</Height>
             <Width>1.51475cm</Width>
             <ZIndex>7</ZIndex>
@@ -803,9 +803,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>3.14014cm</Top>
-            <Left>5.6431cm</Left>
+            <Left>5.58141cm</Left>
             <Height>0.6cm</Height>
-            <Width>1.64793cm</Width>
+            <Width>1.78406cm</Width>
             <ZIndex>10</ZIndex>
             <Style>
               <Border>
@@ -836,7 +836,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.36375cm</Top>
-            <Left>3.89592cm</Left>
+            <Left>3.89027cm</Left>
             <Height>0.6cm</Height>
             <Width>1.51475cm</Width>
             <ZIndex>11</ZIndex>
@@ -870,7 +870,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox4</rd:DefaultName>
             <Top>2.36375cm</Top>
-            <Left>5.58706cm</Left>
+            <Left>5.58141cm</Left>
             <Height>0.6cm</Height>
             <Width>1.78406cm</Width>
             <ZIndex>12</ZIndex>
@@ -888,10 +888,10 @@
         <Height>4.39583in</Height>
         <Style />
       </Body>
-      <Width>3.03472in</Width>
+      <Width>3.00559in</Width>
       <Page>
         <PageHeader>
-          <Height>5.04472cm</Height>
+          <Height>4.63903cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -932,9 +932,9 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.26458cm</Top>
-              <Left>0.04749cm</Left>
+              <Left>0.26654cm</Left>
               <Height>2.27569cm</Height>
-              <Width>7.5867cm</Width>
+              <Width>7.13702cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -959,8 +959,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>2.95438cm</Top>
-              <Left>0.04749cm</Left>
+              <Top>2.93674cm</Top>
+              <Left>0.30464cm</Left>
               <Height>0.6cm</Height>
               <Width>1.66697cm</Width>
               <ZIndex>1</ZIndex>
@@ -991,8 +991,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>2.97202cm</Top>
-              <Left>1.9078cm</Left>
+              <Top>2.95438cm</Top>
+              <Left>2.16495cm</Left>
               <Height>0.6cm</Height>
               <Width>1.82563cm</Width>
               <ZIndex>2</ZIndex>
@@ -1024,8 +1024,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>3.94217cm</Top>
-              <Left>0.04749cm</Left>
+              <Top>3.92453cm</Top>
+              <Left>0.30464cm</Left>
               <Height>0.6cm</Height>
               <Width>1.67827cm</Width>
               <ZIndex>3</ZIndex>
@@ -1056,8 +1056,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
-              <Top>3.92453cm</Top>
-              <Left>1.9078cm</Left>
+              <Top>3.90689cm</Top>
+              <Left>2.16495cm</Left>
               <Height>0.6cm</Height>
               <Width>4.47693cm</Width>
               <ZIndex>4</ZIndex>
@@ -1080,10 +1080,10 @@
         </PageHeader>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>8cm</PageWidth>
-        <LeftMargin>2cm</LeftMargin>
-        <RightMargin>2cm</RightMargin>
-        <TopMargin>2cm</TopMargin>
-        <BottomMargin>2cm</BottomMargin>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
+        <TopMargin>0cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>
         <Style />
       </Page>
@@ -1116,7 +1116,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="return">
-      <DataType>Integer</DataType>
+      <DataType>Float</DataType>
       <Nullable>true</Nullable>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
@@ -1142,11 +1142,6 @@
     </ReportParameter>
     <ReportParameter Name="quantity">
       <DataType>Integer</DataType>
-      <Nullable>true</Nullable>
-      <Prompt>ReportParameter2</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="rtotal">
-      <DataType>Float</DataType>
       <Nullable>true</Nullable>
       <Prompt>ReportParameter2</Prompt>
     </ReportParameter>
@@ -1210,11 +1205,6 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>2</RowIndex>
           <ParameterName>quantity</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>3</RowIndex>
-          <ParameterName>rtotal</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

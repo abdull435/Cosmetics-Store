@@ -1389,6 +1389,7 @@ namespace Cosmetics_Store
             returnMoney = decimal.Parse(returnbox.Text);
             total = grandTotal;
 
+            int items = dataGridView4.Rows.Count;
             if (!string.IsNullOrEmpty(receivedbox.Text))
             {
                 receivedMoney = decimal.Parse(receivedbox.Text);
@@ -1425,8 +1426,8 @@ namespace Cosmetics_Store
                         }
 
                         // Step 3: Insert a new sale record using the incremented SALEID
-                        string insertQuery = "INSERT INTO SALES (SALEID, TOTAL, DISCOUNT, GRANDTOTAL, RECIEVEDMONEY, RETURNMONEY, DATETIME, PROFIT) " +
-                                             "VALUES (:saleId, :total, :discount, :grandTotal, :receivedMoney, :returnMoney, SYSDATE, :profit)";
+                        string insertQuery = "INSERT INTO SALES (SALEID, TOTAL, DISCOUNT, GRANDTOTAL, RECIEVEDMONEY, RETURNMONEY, DATETIME, PROFIT, ITEMS) " +
+                                             "VALUES (:saleId, :total, :discount, :grandTotal, :receivedMoney, :returnMoney, SYSDATE, :profit, :items)";
 
                         using (OracleCommand insertCmd = new OracleCommand(insertQuery, conn))
                         {
@@ -1437,15 +1438,17 @@ namespace Cosmetics_Store
                             insertCmd.Parameters.Add(":receivedMoney", receivedMoney);
                             insertCmd.Parameters.Add(":returnMoney", returnMoney);
                             insertCmd.Parameters.Add(":profit", profit);
+                            insertCmd.Parameters.Add(":items", items);
 
-                            insertCmd.ExecuteNonQuery(); // Execute the insertion
+                        insertCmd.ExecuteNonQuery(); // Execute the insertion
                         }
 
                         InsertSaleItems(newSaleId);
                         MessageBox.Show("Sale added successfully.");
-                        mainClears();
                         todaysSale();
-                    }
+                        Printname(newSaleId,items,total);
+                        mainClears();
+                }
                     catch (Exception ex)
                     {
                         // Handle exceptions (e.g., log the error, show a message to the user)
@@ -1661,8 +1664,88 @@ namespace Cosmetics_Store
 
         private void button22_Click(object sender, EventArgs e)
         {
+            
         }
 
-        
+        private void Printname(int saleid, decimal items,decimal subtotal)
+        {
+            decimal discount=0,total=0,received=0,returnmoney=0;
+            DateTime date = DateTime.Now;
+
+            if (!string.IsNullOrEmpty(discountbox.Text)) 
+            { 
+                discount=decimal.Parse(discountbox.Text);
+            }
+
+            if (!string.IsNullOrEmpty(payablebox.Text))
+            {
+                total = decimal.Parse(payablebox.Text);
+            }
+
+            if (!string.IsNullOrEmpty(receivedbox.Text))
+            {
+                received = decimal.Parse(receivedbox.Text);
+            }
+
+            if (!string.IsNullOrEmpty(returnbox.Text))
+            {
+                returnmoney = decimal.Parse(returnbox.Text);
+            }
+
+            try
+            {
+                
+
+                reportViewer1.Reset();
+
+                // Set the path to your RDLC report
+                reportViewer1.LocalReport.ReportPath = "PrintBill.rdlc";
+
+                // Create a DataTable with columns that match the RDLC table
+                DataTable table = new DataTable();
+                table.Columns.Add("name", typeof(string));
+                table.Columns.Add("price", typeof(decimal));
+                table.Columns.Add("quantity", typeof(int));
+                table.Columns.Add("rtotal", typeof(decimal));
+
+                // Populate the DataTable with data from DataGridView
+                foreach (DataGridViewRow row in dataGridView4.Rows)
+                {
+                    if (row.Cells[1].Value != null) // Avoid empty rows
+                    {
+                        table.Rows.Add(
+                            row.Cells[1].Value.ToString(),              // Name
+                            Convert.ToDecimal(row.Cells[2].Value),      // Price
+                            Convert.ToInt32(row.Cells[3].Value),        // Quantity
+                            Convert.ToDecimal(row.Cells[4].Value)       // Total
+                        );
+                    }
+                }
+
+                // Create a ReportDataSource with the DataTable
+                ReportDataSource dataSource = new ReportDataSource("DataSet1", table);
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.DataSources.Add(dataSource);
+
+                ReportParameter idParameter = new ReportParameter("saleid", saleid.ToString());
+                ReportParameter dateParameter = new ReportParameter("datetime", date.ToString());
+                ReportParameter itemsParameter = new ReportParameter("items", items.ToString());
+                ReportParameter subtotalParameter = new ReportParameter("subtotal", subtotal.ToString());
+                ReportParameter discountParameter = new ReportParameter("discount", discount.ToString());
+                ReportParameter totalParameter = new ReportParameter("total", total.ToString());
+                ReportParameter receivedParameter = new ReportParameter("received", received.ToString());
+                ReportParameter returnParameter = new ReportParameter("return", returnmoney.ToString());
+
+                reportViewer1.LocalReport.SetParameters(new ReportParameter[] { idParameter,
+                    dateParameter, itemsParameter,subtotalParameter,
+                    discountParameter,totalParameter , receivedParameter,
+                    returnParameter }); 
+                reportViewer1.RefreshReport();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading data to report: " + ex.Message);
+            }
+        }
     }
 }
