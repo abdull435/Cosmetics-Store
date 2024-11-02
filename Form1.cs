@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.Reporting.WinForms;
 
 namespace Cosmetics_Store
 {
@@ -954,6 +955,7 @@ namespace Cosmetics_Store
             discountbox.Enabled = false;
             receivedbox.Enabled = false;
             todaysSale();
+            this.reportViewer1.RefreshReport();
         }
 
         private void medicinebox_TextChanged(object sender, EventArgs e)
@@ -1226,7 +1228,6 @@ namespace Cosmetics_Store
 
                 afterDiscount();
 
-                // Update the serial numbers in the first column
                 for (int i = 0; i < dataGridView4.Rows.Count; i++)
                 {
                     dataGridView4.Rows[i].Cells[0].Value = i + 1;
@@ -1657,5 +1658,11 @@ namespace Cosmetics_Store
         {
 
         }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+        }
+
+        
     }
 }
