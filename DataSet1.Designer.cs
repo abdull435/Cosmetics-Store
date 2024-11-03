@@ -287,6 +287,8 @@ namespace Cosmetics_Store {
             
             private global::System.Data.DataColumn columnrtotal;
             
+            private global::System.Data.DataColumn columndiscount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public DataTable1DataTable() {
@@ -354,6 +356,14 @@ namespace Cosmetics_Store {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn discountColumn {
+                get {
+                    return this.columndiscount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +399,14 @@ namespace Cosmetics_Store {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string name, string price, string quantity, string rtotal) {
+            public DataTable1Row AddDataTable1Row(string name, string price, string quantity, string rtotal, string discount) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         name,
                         price,
                         quantity,
-                        rtotal};
+                        rtotal,
+                        discount};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -422,6 +433,7 @@ namespace Cosmetics_Store {
                 this.columnprice = base.Columns["price"];
                 this.columnquantity = base.Columns["quantity"];
                 this.columnrtotal = base.Columns["rtotal"];
+                this.columndiscount = base.Columns["discount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -435,6 +447,8 @@ namespace Cosmetics_Store {
                 base.Columns.Add(this.columnquantity);
                 this.columnrtotal = new global::System.Data.DataColumn("rtotal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnrtotal);
+                this.columndiscount = new global::System.Data.DataColumn("discount", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndiscount);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -641,6 +655,22 @@ namespace Cosmetics_Store {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string discount {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable1.discountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'discount\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.discountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsnameNull() {
                 return this.IsNull(this.tableDataTable1.nameColumn);
             }
@@ -685,6 +715,18 @@ namespace Cosmetics_Store {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetrtotalNull() {
                 this[this.tableDataTable1.rtotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsdiscountNull() {
+                return this.IsNull(this.tableDataTable1.discountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetdiscountNull() {
+                this[this.tableDataTable1.discountColumn] = global::System.Convert.DBNull;
             }
         }
         

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Oracle.ManagedDataAccess.Client;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.Reporting.WinForms;
+using System.Drawing.Printing;
 
 namespace Cosmetics_Store
 {
@@ -446,6 +447,7 @@ namespace Cosmetics_Store
                     MessageBox.Show("Please enter a valid number for the quantity.");
                     return;
                 }
+                
 
                 int ids;
                 if (!int.TryParse(rid.Text, out ids))
@@ -952,7 +954,6 @@ namespace Cosmetics_Store
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            discountbox.Enabled = false;
             receivedbox.Enabled = false;
             todaysSale();
             this.reportViewer1.RefreshReport();
@@ -1147,41 +1148,32 @@ namespace Cosmetics_Store
                     }
                 }
 
+                decimal disc = 0;
+                if (!string.IsNullOrEmpty(discountBox.Text))
+                {
+                    disc=decimal.Parse(discountBox.Text);
+                }
                 decimal profit = (quantity * saleprice) - (purchaseprice * quantity);
                 decimal total = saleprice * quantity;
-
+                total -= disc;
                 // Generate the serial number based on the current number of rows
                 int serialNumber = dataGridView4.Rows.Count + 1;
 
                 // Add data to the DataGridView
                 int rowIndex = dataGridView4.Rows.Add();
-                dataGridView4.Rows[rowIndex].Cells[0].Value = serialNumber;  // Serial Number
-                dataGridView4.Rows[rowIndex].Cells[1].Value = name;          // Name
-                dataGridView4.Rows[rowIndex].Cells[2].Value = saleprice;         // Price
-                dataGridView4.Rows[rowIndex].Cells[3].Value = quantity;      // Quantity
-                dataGridView4.Rows[rowIndex].Cells[4].Value = total;         // Total
-                dataGridView4.Rows[rowIndex].Cells[5].Value = profit;         // Profit
-
+                dataGridView4.Rows[rowIndex].Cells[0].Value = serialNumber;  
+                dataGridView4.Rows[rowIndex].Cells[1].Value = name;          
+                dataGridView4.Rows[rowIndex].Cells[2].Value = saleprice;     
+                dataGridView4.Rows[rowIndex].Cells[3].Value = quantity;
+                dataGridView4.Rows[rowIndex].Cells[4].Value = disc;
+                dataGridView4.Rows[rowIndex].Cells[5].Value = total;         
+                dataGridView4.Rows[rowIndex].Cells[6].Value = profit;         
+                                
                 payablebox.Text = totalCount().ToString();
-
-
-                if (!string.IsNullOrEmpty(discountbox.Text))
-                {
-                    decimal getpayable = totalCount();
-                    decimal getDiscount = decimal.Parse(discountbox.Text) / 100;
-
-                    decimal returncount = getpayable * getDiscount;
-                    returncount = getpayable - returncount;
-                    payablebox.Text = returncount.ToString();
-
-                }
-                else
-                {
-                    payablebox.Text = totalCount().ToString();
-                }
 
                 medicinebox.Text = "";
                 quantitybox.Text = "";
+                discountBox.Text = "";
             }
             catch (Exception ex)
             {
@@ -1220,13 +1212,10 @@ namespace Cosmetics_Store
                 if (dataGridView4.Rows.Count == 0)
                 {
                     payablebox.Text = "0";
-                    discountbox.Text = "";
-                    discountbox.Enabled = false;
                     receivedbox.Text = "";
                     receivedbox.Enabled = false;
                 }
 
-                afterDiscount();
 
                 for (int i = 0; i < dataGridView4.Rows.Count; i++)
                 {
@@ -1235,6 +1224,7 @@ namespace Cosmetics_Store
 
                 medicinebox.Text = "";
                 quantitybox.Text = "";
+                discountBox.Text = "";
             }
             else
             {
@@ -1267,6 +1257,18 @@ namespace Cosmetics_Store
             decimal total = 0;
             for (int i = 0; i < dataGridView4.Rows.Count; i++)
             {
+                decimal payable = decimal.Parse(dataGridView4.Rows[i].Cells[5].Value.ToString());
+                total = payable + total;
+            }
+
+            return total;
+        }
+
+        private decimal discCount()
+        {
+            decimal total = 0;
+            for (int i = 0; i < dataGridView4.Rows.Count; i++)
+            {
                 decimal payable = decimal.Parse(dataGridView4.Rows[i].Cells[4].Value.ToString());
                 total = payable + total;
             }
@@ -1276,81 +1278,19 @@ namespace Cosmetics_Store
 
         private void discountbox_TextChanged(object sender, EventArgs e)
         {
-            afterDiscount();
             setReturn();
         }
-
-
-        private void afterDiscount()
-        {
-            if (!string.IsNullOrEmpty(discountbox.Text))
-            {
-                decimal getpayable = totalCount();
-                decimal getDiscount = decimal.Parse(discountbox.Text) / 100;
-
-                decimal returncount = getpayable * getDiscount;
-                returncount = getpayable - returncount;
-                payablebox.Text = returncount.ToString();
-
-            }
-            else
-            {
-                payablebox.Text = totalCount().ToString();
-            }
-        }
-
-        private void discountbox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsControl(e.KeyChar))
-            {
-                return; // Allow control characters
-            }
-
-            // Allow only digits (0-9)
-            if (!char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true; // Suppress the key press event if the character is not valid
-                return;
-            }
-
-            // If the user is entering a digit, check the current value
-            string currentText = discountbox.Text;
-
-            // If the current text is "100", no further input is allowed
-            if (currentText == "100" && char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true; // Prevent adding another digit
-                return;
-            }
-
-            // Allow up to 3 digits
-            if (currentText.Length >= 2 && char.IsDigit(e.KeyChar))
-            {
-                int newValue = int.Parse(currentText + e.KeyChar);
-                if (newValue > 100)
-                {
-                    e.Handled = true; // Prevent input if it exceeds 100
-                }
-            }
-        }
-
+                       
         private void payablebox_TextChanged(object sender, EventArgs e)
         {
             setReturn();
-            if (decimal.TryParse(discountbox.Text, out decimal discountBox) && discountBox == 100)
-            {
-                return;
-            }
             if (decimal.TryParse(payablebox.Text, out decimal payableValue) && payableValue <= 0)
             {
-                discountbox.Text = "";
-                discountbox.Enabled = false;
                 receivedbox.Text = "";
                 receivedbox.Enabled = false;
             }
             else
             {
-                discountbox.Enabled = true;
                 receivedbox.Enabled = true;
             }
         }
@@ -1371,9 +1311,9 @@ namespace Cosmetics_Store
             dataGridView4.Rows.Clear();
             medicinebox.Text = "";
             quantitybox.Text = "";
+            discountBox.Text = "";
             payablebox.Text = "0";
             returnbox.Text = "0";
-            discountbox.Text = "";
             receivedbox.Text = "";
         }
 
@@ -1384,26 +1324,20 @@ namespace Cosmetics_Store
 
         public void insertSale()
         {
-            decimal total = 0, discount=0, grandTotal=0, receivedMoney = 0, returnMoney = 0,  profit=0;
+            decimal total = 0, grandTotal=0, receivedMoney = 0, returnMoney = 0,  profit=0;
             grandTotal = decimal.Parse(payablebox.Text);                        
             returnMoney = decimal.Parse(returnbox.Text);
-            total = grandTotal;
+            decimal discount = discCount();
 
             int items = dataGridView4.Rows.Count;
             if (!string.IsNullOrEmpty(receivedbox.Text))
             {
                 receivedMoney = decimal.Parse(receivedbox.Text);
             }
-            if (!string.IsNullOrEmpty(discountbox.Text))
-            {
-                discount = decimal.Parse(discountbox.Text);
-                total = grandTotal * (discount/100);
-                total = grandTotal + total;
-            }
 
                 for (int i = 0; i < dataGridView4.Rows.Count; i++)
                 {
-                    profit=decimal.Parse(dataGridView4.Rows[i].Cells[5].Value.ToString())+profit;
+                    profit=decimal.Parse(dataGridView4.Rows[i].Cells[6].Value.ToString())+profit;
                 
                 }
                 
@@ -1425,7 +1359,6 @@ namespace Cosmetics_Store
                             newSaleId = Convert.ToInt32(countCmd.ExecuteScalar()) + 1; // Increment count for new SALEID
                         }
 
-                        // Step 3: Insert a new sale record using the incremented SALEID
                         string insertQuery = "INSERT INTO SALES (SALEID, TOTAL, DISCOUNT, GRANDTOTAL, RECIEVEDMONEY, RETURNMONEY, DATETIME, PROFIT, ITEMS) " +
                                              "VALUES (:saleId, :total, :discount, :grandTotal, :receivedMoney, :returnMoney, SYSDATE, :profit, :items)";
 
@@ -1447,6 +1380,13 @@ namespace Cosmetics_Store
                         MessageBox.Show("Sale added successfully.");
                         todaysSale();
                         Printname(newSaleId,items,total);
+
+                        DialogResult= MessageBox.Show("Print","confirmation",MessageBoxButtons.YesNo);
+                        if(DialogResult == DialogResult.Yes)
+                        {
+                        PrintReporte();
+                        }
+
                         mainClears();
                 }
                     catch (Exception ex)
@@ -1476,9 +1416,7 @@ namespace Cosmetics_Store
                     }
 
                     // Prepare the SQL insert query
-                    string insertQuery = "INSERT INTO SALEITEMS (SALEID, NAME, PRICE, QUANTITY, TOTAL) " +
-                                         "VALUES (:saleId, :name, :price, :quantity, :total)";
-
+                    
                     
                 foreach (DataGridViewRow row in dataGridView4.Rows)
                     {
@@ -1489,7 +1427,8 @@ namespace Cosmetics_Store
                             string name = row.Cells[1].Value?.ToString();
                             decimal price = Convert.ToDecimal(row.Cells[2].Value);
                             int quantity = Convert.ToInt32(row.Cells[3].Value);
-                            decimal total = Convert.ToDecimal(row.Cells[4].Value);
+                            decimal disc = Convert.ToDecimal(row.Cells[4].Value);
+                            decimal total = Convert.ToDecimal(row.Cells[5].Value);
 
 
 
@@ -1526,6 +1465,10 @@ namespace Cosmetics_Store
                             setData.ExecuteNonQuery();
                         }
 
+                        string insertQuery = "INSERT INTO SALEITEMS (SALEID, NAME, PRICE, QUANTITY, DISCOUNT, TOTAL) " +
+                                         "VALUES (:saleId, :name, :price, :quantity, :discount :total)";
+
+
                         using (OracleCommand insertCmd = new OracleCommand(insertQuery, conn))
                             {
                                 // Add parameters to the command
@@ -1533,6 +1476,7 @@ namespace Cosmetics_Store
                                 insertCmd.Parameters.Add(":name", name);
                                 insertCmd.Parameters.Add(":price", price);
                                 insertCmd.Parameters.Add(":quantity", quantity);
+                                insertCmd.Parameters.Add("discount", disc);
                                 insertCmd.Parameters.Add(":total", total);
 
                                 // Execute the command to insert the sale item
@@ -1669,13 +1613,9 @@ namespace Cosmetics_Store
 
         private void Printname(int saleid, decimal items,decimal subtotal)
         {
-            decimal discount=0,total=0,received=0,returnmoney=0;
+            decimal total=0,received=0,returnmoney=0;
             DateTime date = DateTime.Now;
-
-            if (!string.IsNullOrEmpty(discountbox.Text)) 
-            { 
-                discount=decimal.Parse(discountbox.Text);
-            }
+            decimal discount = discCount();
 
             if (!string.IsNullOrEmpty(payablebox.Text))
             {
@@ -1747,5 +1687,26 @@ namespace Cosmetics_Store
                 MessageBox.Show("Error loading data to report: " + ex.Message);
             }
         }
+
+        private void PrintReporte()
+        {
+            try
+            {
+                PrintDocument printDoc = new PrintDocument();
+
+                // Handle the PrintPage event
+                printDoc.PrintPage += (sender, e) =>
+                {
+                    // Print the reportViewer content
+                    reportViewer1.PrintDialog();
+                };
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while printing the report: " + ex.Message);
+            }
+        }
+
     }
 }
